@@ -19,27 +19,27 @@
           >
             <el-menu-item index="Index">
               <nuxt-link to="/">
-                首页
-              </nuxt-link>
-            </el-menu-item>
-            <el-menu-item index="Garden">
-              <nuxt-link to="/garden">
-                菜园
+                首 页
               </nuxt-link>
             </el-menu-item>
             <el-menu-item index="Task">
               <nuxt-link to="/task">
-                任务
+                耕种实验
+              </nuxt-link>
+            </el-menu-item>
+            <el-menu-item index="Garden">
+              <nuxt-link to="/garden">
+                菜 园
               </nuxt-link>
             </el-menu-item>
             <el-menu-item index="Expert">
               <nuxt-link to="/expert">
-                专家
+                专家介绍
               </nuxt-link>
             </el-menu-item>
             <el-menu-item index="Personal">
               <nuxt-link to="/personal">
-                我的
+                我 的
               </nuxt-link>
             </el-menu-item>
           </el-menu>
@@ -54,27 +54,27 @@
         <el-dropdown-menu slot="dropdown">
           <el-dropdown-item>
             <nuxt-link to="/">
-              首页
-            </nuxt-link>
-          </el-dropdown-item>
-          <el-dropdown-item>
-            <nuxt-link to="/garden">
-              菜园
+              首 页
             </nuxt-link>
           </el-dropdown-item>
           <el-dropdown-item>
             <nuxt-link to="/task">
-              任务
+              耕种实验
+            </nuxt-link>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <nuxt-link to="/garden">
+              菜 园
             </nuxt-link>
           </el-dropdown-item>
           <el-dropdown-item>
             <nuxt-link to="/expert">
-              专家
+              专家介绍
             </nuxt-link>
           </el-dropdown-item>
           <el-dropdown-item>
             <nuxt-link to="/personal">
-              我的
+              我 的
             </nuxt-link>
           </el-dropdown-item>
         </el-dropdown-menu>
