@@ -26,7 +26,7 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
 
        $ git clone [项目git地址]
 
-2. 切换到develop分支
+2. 进入项目根目录并切换到develop分支
 
         $ cd 17gz8_web //进入项目
         $ git checkout -b develop remotes/origin/develop //git checkout -b [本地分支] [远程分支]
