@@ -116,7 +116,7 @@ a {
   font-size: 18px;
   line-height: 50px;
   text-decoration-line: none;
-  color: white;
+  /* color: white; */
 }
 
 .list-warp{

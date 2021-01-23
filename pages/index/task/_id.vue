@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    专家
+  <div>
+    耕种详情
   </div>
 </template>
 
@@ -8,4 +8,4 @@
 export default {}
 </script>
 
-<style scoped></style>
+<style  scoped></style>
