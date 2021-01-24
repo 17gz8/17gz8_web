@@ -12,9 +12,9 @@
             :default-active="activeIndex"
             class="el-menu-demo"
             :mode="mode"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b"
+            background="#FFFFFF"
+            text-color="#666666"
+            active-text-color="#FF6262"
             @select="handleSelect"
           >
             <el-menu-item index="Index">

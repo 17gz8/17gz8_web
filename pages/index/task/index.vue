@@ -7,15 +7,15 @@
 <script>
 // import TaskList from 'components/TaskList.vue'
 export default {
+  data () {
+    return {
+      activeName: 'first',
+      currentIndex: 0
+    }
+  },
   // component: {
   //   TaskList
   // },
-
-  data () {
-    return {
-      activeName: 'first'
-    }
-  },
   methods: {
     // 切换标注
     // tabClick (type) {
