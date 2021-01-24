@@ -1,6 +1,6 @@
 <template>
   <div>
-    耕种详情
+    耕种详情1
   </div>
 </template>
 
