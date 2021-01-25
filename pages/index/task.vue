@@ -17,7 +17,7 @@
       </div>
     </div>
     <!-- 2.列表数据 -->
-    <nuxt-child />
+    <nuxt-child :current-index="currentIndex" />
   </div>
 </template>
 
@@ -27,11 +27,19 @@ export default {
     return {
       // 导航栏部分变量
       listArray: ['发起中', '实验中', '已完成'],
-      currentIndex: 0
+      currentIndex: 0,
+      // 监听tab,只在当前页面取消tab默认行为
+      activeTab: true
     }
   },
   mounted () {
     this.tabEvent()
+  },
+  created () {
+    this.activeTab = true
+  },
+  destroyed () {
+    this.activeTab = false
   },
   methods: {
     // 1.切换列表导航事件
@@ -40,14 +48,22 @@ export default {
       this.currentIndex = index
       // this.$emit('current-index')
     },
-    // 2.监听tab事件（与浏览器自带的tab事件冲突）
+    // 2.监听tab事件
     tabEvent () {
       document.addEventListener('keydown', (e) => {
         const keyName = e.key
-        // alert(keyName)
+        // alert(keyName + ' ' + this.activeTab)
         if (keyName === 'Tab') {
-          this.currentIndex += 1
-          this.currentIndex = this.currentIndex % 3
+          // 阻止默认tab选中焦点的默认行为
+          if (this.activeTab) {
+            e.preventDefault()
+            e.returnValue = false
+            // 切换导航
+            this.currentIndex += 1
+            this.currentIndex = this.currentIndex % 3
+          } else {
+            e.returnValue = true
+          }
         }
       })
     }

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-card v-for="(item,index) in tasks" :key="index">
+    <el-card v-for="(item,index) in tasks[showIndex]" :key="index">
       <nuxt-link :to="`/task/${item.id}`" class="link">
         <div style="display: flex; height: 300px">
           <!-- 1.左侧图片 -->
@@ -49,7 +49,7 @@
             </div>
             <!-- 6. 操作按钮 -->
             <div class="bottom clearfix">
-              <el-button type="text" class="button">
+              <el-button v-if="showIndex === 0" type="text" class="button">
                 加入任务
               </el-button>
               <el-button type="text" class="button">
@@ -69,160 +69,462 @@ export default {
     status: {
       type: Number,
       default: null
+    },
+    showIndex: {
+      type: Number,
+      default: 0
     }
   },
   data () {
     return {
-      tasks: [
+      tasks: {
         // { id: '1', name: '任务1', src: '/task/1' },
         // { id: '2', name: '任务2', src: '/task/2' },
         // { id: '3', name: '任务3', src: '/task/3' },
         // { id: '4', name: '任务4', src: '/task/4' }
-        {
-          id: '1',
-          landImg: require('@/assets/taskImg/1.jpg'),
-          title: '种植白菜',
-          addres: '重庆市巴南区',
-          scoolImg: require('@/assets/taskImg/1.jpg'),
-          scoolName: '重庆市渝中小学',
-          scoolManager: '刘老师',
-          update: '2天前',
-          scoolMember: [
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '马老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '罗老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '何老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '宋老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            }
-          ]
-        },
-        {
-          id: '2',
-          landImg: require('@/assets/taskImg/1.jpg'),
-          title: '种植萝卜',
-          addres: '重庆市永川区',
-          scoolImg: require('@/assets/taskImg/1.jpg'),
-          scoolName: '重庆市永川小学',
-          scoolManager: '何老师',
-          update: '2天前',
-          scoolMember: [
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '马老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '罗老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '何老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '宋老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            }
-          ]
-        },
-        {
-          id: '3',
-          landImg: require('@/assets/taskImg/1.jpg'),
-          title: '种植白菜',
-          addres: '重庆市巴南区',
-          scoolImg: require('@/assets/taskImg/1.jpg'),
-          scoolName: '重庆市渝中小学',
-          scoolManager: '刘老师',
-          update: '2天前',
-          scoolMember: [
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '马老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '罗老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '何老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '宋老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            }
-          ]
-        },
-        {
-          id: '4',
-          landImg: require('@/assets/taskImg/1.jpg'),
-          title: '种植白菜',
-          addres: '重庆市巴南区',
-          scoolImg: require('@/assets/taskImg/1.jpg'),
-          scoolName: '重庆市渝中小学',
-          scoolManager: '刘老师',
-          update: '2天前',
-          scoolMember: [
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '马老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '罗老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '何老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '宋老师'
-            },
-            {
-              img: require('@/assets/taskImg/1.jpg'),
-              name: '邓老师'
-            }
-          ]
-        }
-      ]
+        0: [
+          {
+            id: '1',
+            landImg: require('@/assets/taskImg/test1.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/test1.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '2',
+            landImg: require('@/assets/taskImg/test1.png'),
+            title: '种植萝卜',
+            addres: '重庆市永川区',
+            scoolImg: require('@/assets/taskImg/test1.png'),
+            scoolName: '重庆市永川小学',
+            scoolManager: '何老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '3',
+            landImg: require('@/assets/taskImg/test1.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/test1.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '4',
+            landImg: require('@/assets/taskImg/test1.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/test1.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test1.png'),
+                name: '邓老师'
+              }
+            ]
+          }
+        ],
+        1: [
+          {
+            id: '1',
+            landImg: require('@/assets/taskImg/text2.png'),
+            title: '种植白菜',
+            addres: '重庆市合川区',
+            scoolImg: require('@/assets/taskImg/text2.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '何老师'
+              }
+            ]
+          },
+          {
+            id: '2',
+            landImg: require('@/assets/taskImg/text2.png'),
+            title: '种植萝卜',
+            addres: '重庆市永川区',
+            scoolImg: require('@/assets/taskImg/text2.png'),
+            scoolName: '重庆市永川小学',
+            scoolManager: '何老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '3',
+            landImg: require('@/assets/taskImg/text2.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/text2.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '4',
+            landImg: require('@/assets/taskImg/text2.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/text2.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/text2.png'),
+                name: '邓老师'
+              }
+            ]
+          }
+        ],
+        2: [
+          {
+            id: '1',
+            landImg: require('@/assets/taskImg/test3.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/test3.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '2',
+            landImg: require('@/assets/taskImg/test3.png'),
+            title: '种植萝卜',
+            addres: '重庆市永川区',
+            scoolImg: require('@/assets/taskImg/test3.png'),
+            scoolName: '重庆市永川小学',
+            scoolManager: '何老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '3',
+            landImg: require('@/assets/taskImg/test3.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/test3.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              }
+            ]
+          },
+          {
+            id: '4',
+            landImg: require('@/assets/taskImg/test3.png'),
+            title: '种植白菜',
+            addres: '重庆市巴南区',
+            scoolImg: require('@/assets/taskImg/test3.png'),
+            scoolName: '重庆市渝中小学',
+            scoolManager: '刘老师',
+            update: '2天前',
+            scoolMember: [
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '马老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '罗老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '何老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '宋老师'
+              },
+              {
+                img: require('@/assets/taskImg/test3.png'),
+                name: '邓老师'
+              }
+            ]
+          }
+        ]
+      }
 
     }
   },
