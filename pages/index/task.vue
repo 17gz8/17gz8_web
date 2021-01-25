@@ -1,6 +1,6 @@
 <template>
-  <div class="task">
-    <!-- 1.列表导航 -->
+  <!-- <div class="task">
+    1.列表导航
     <div class="nav">
       <div class="nav_items">
         <div class="nav_items_line" />
@@ -15,10 +15,10 @@
           </span>
         </div>
       </div>
-    </div>
-    <!-- 2.列表数据 -->
-    <nuxt-child :current-index="currentIndex" />
-  </div>
+    </div> -->
+  <!-- 2.列表数据 -->
+  <nuxt-child :current-index="currentIndex" />
+  <!-- </div> -->
 </template>
 
 <script>
@@ -73,13 +73,13 @@ export default {
 
 <style  scoped>
 .task {
-  width: 100%vh;
+  /* width: 100%vh; */
   /* background-color: lightblue; */
-  margin: 2% 3% 0;
+  /* margin: 2% 3% 0; */
 }
 /* 导航栏开始 */
 .nav {
-  margin-left: 4%;
+  /* margin-left: 4%; */
 }
 .nav .nav_items {
   display: flex;
