@@ -145,15 +145,15 @@ a {
     padding: 15px 22px;
   }
 }
-/* @media screen and (max-width: 800px) {
+@media screen and (max-width: 800px) {
   .el-menu-item{
     padding: 0 5px;
   }
   a{
-    background-color:lightseagreen;
-    padding: 15px 5px;
+    /* background-color:lightseagreen; */
+    padding: 15px 10px;
   }
-} */
+}
 @media screen and (max-width: 700px) {
   /* logo */
   .logo-warp{
