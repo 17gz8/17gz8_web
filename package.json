@@ -23,7 +23,8 @@
   },
   "lint-staged": {
     "src/**/*.{js,vue}": [
-      "eslint --fix"
+      "eslint --fix",
+      "git add"
     ]
   },
   "dependencies": {
@@ -39,7 +40,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^7.10.0",
     "eslint-plugin-nuxt": "^1.0.0",
-    "husky": "^4.3.8",
-    "lint-staged": "^10.5.3"
+    "husky": "^2.4.0",
+    "lint-staged": "^8.1.7"
   }
 }
