@@ -1,15 +1,32 @@
 <template>
-  <div>
-    <el-card v-for="(item,index) in tasks[showIndex]" :key="index">
+  <div class="task-list">
+    <!-- 1.导航栏 -->
+    <div class="nav">
+      <div class="nav_items">
+        <div class="nav_items_line" />
+        <div class="nav_items_list">
+          <span
+            v-for="(item, index) in listArray"
+            :key="index"
+            :class="{ active: index === currentIndex }"
+            @click="listClick(index)"
+          >
+            {{ item }}
+          </span>
+        </div>
+      </div>
+    </div>
+    <!-- 2.列表数据 -->
+    <el-card v-for="(item,index) in tasks[currentIndex]" :key="index">
       <nuxt-link :to="`/task/${item.id}`" class="link">
         <div style="display: flex; height: 300px">
-          <!-- 1.左侧图片 -->
+          <!-- 2-1.左侧图片 -->
           <div class="left">
             <img :src="item.landImg" alt="">
           </div>
-          <!-- 2.右侧描述 -->
+          <!-- 2-2.右侧描述 -->
           <div class="right">
-            <!-- 3.标题和地址 -->
+            <!-- 2-3.标题和地址 -->
             <p class="title">
               {{ item.title }}
             </p>
@@ -19,7 +36,7 @@
                 {{ item.addres }}
               </p>
             </div>
-            <!-- 4. 学校与负责人 -->
+            <!-- 2-4. 学校与负责人 -->
             <div class="center">
               <img :src="item.scoolImg" alt="">
               <div style="padding-left: 7px" class="center_info">
@@ -34,7 +51,7 @@
                 </span>
               </div>
             </div>
-            <!-- 5. 参与人员 -->
+            <!-- 2-5. 参与人员 -->
             <div class="center_down">
               <div
                 v-for="(itemM, index2) in item.scoolMember"
@@ -47,9 +64,9 @@
                 </div>
               </div>
             </div>
-            <!-- 6. 操作按钮 -->
+            <!-- 2-6. 操作按钮 -->
             <div class="bottom clearfix">
-              <el-button v-if="showIndex === 0" type="text" class="button">
+              <el-button v-if="currentIndex === 0" type="text" class="button">
                 加入任务
               </el-button>
               <el-button type="text" class="button">
@@ -69,14 +86,16 @@ export default {
     status: {
       type: Number,
       default: null
-    },
-    showIndex: {
-      type: Number,
-      default: 0
     }
   },
   data () {
     return {
+      // 1.导航栏部分变量
+      listArray: ['发起中', '实验中', '已完成'],
+      currentIndex: 0,
+      // 监听tab,只在当前页面取消tab默认行为
+      activeTab: true,
+      // 2.列表数据
       tasks: {
         // { id: '1', name: '任务1', src: '/task/1' },
         // { id: '2', name: '任务2', src: '/task/2' },
@@ -528,7 +547,44 @@ export default {
 
     }
   },
+  mounted () {
+    // 1.开启监听事件
+    this.tabEvent()
+  },
+  created () {
+    // 1.页面创建时取消tab的默认行为
+    this.activeTab = true
+  },
+  destroyed () {
+    // 1.页面销毁时恢复tab的默认行为
+    this.activeTab = false
+  },
   methods: {
+    // 1.切换列表导航事件
+    listClick (index) {
+      // alert('我是第' + index + '个')
+      this.currentIndex = index
+      // this.$emit('current-index')
+    },
+    // 2.监听tab事件
+    tabEvent () {
+      document.addEventListener('keydown', (e) => {
+        const keyName = e.key
+        // alert(keyName + ' ' + this.activeTab)
+        if (keyName === 'Tab') {
+          // 阻止默认tab选中焦点的默认行为
+          if (this.activeTab) {
+            e.preventDefault()
+            e.returnValue = false
+            // 切换导航
+            this.currentIndex += 1
+            this.currentIndex = this.currentIndex % 3
+          } else {
+            e.returnValue = true
+          }
+        }
+      })
+    }
     // 标注列表
   //   getList () {
   //     this.loading = true
@@ -564,6 +620,47 @@ export default {
 </script>
 
 <style scoped>
+.task-list {
+   width: 100%vh;
+  /* background-color: lightblue; */
+  margin: 2% 3% 0;
+}
+
+/* 导航栏开始 */
+.nav {
+  margin-left: 1%;
+}
+.nav .nav_items {
+  display: flex;
+  align-items: center;
+}
+
+.nav .nav_items .nav_items_line {
+  width: 6px;
+  height: 33px;
+  background: #ff6262;
+  opacity: 1;
+}
+.nav .nav_items .nav_items_list span {
+  width: 86px;
+  height: 25px;
+  margin: 0 10px;
+  font-size: 20px;
+  font-family: Source Han Sans CN;
+  font-weight: 400;
+  line-height: 42px;
+  color: #999999;
+  opacity: 1;
+}
+.nav .nav_items .nav_items_list span:hover {
+  cursor: pointer;
+}
+.nav .nav_items .nav_items_list .active {
+  font-size: 25px;
+  color: #707070;
+}
+/* 导航栏结束 */
+
 .el-card{
   width: 48%;
   margin: 1%;
