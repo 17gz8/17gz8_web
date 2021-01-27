@@ -145,7 +145,7 @@ a {
     padding: 15px 22px;
   }
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 810px) {
   .el-menu-item{
     padding: 0 5px;
   }
