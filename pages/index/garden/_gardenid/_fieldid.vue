@@ -2,39 +2,43 @@
   <div class="container">
     <div id="left">
       <div id="content">
-        <div id="content_title" class="title">{{ fieldid }}号菜地</div>
-        <el-card shadow="never" id="content_text">
+        <div id="content_title" class="title">
+          {{ fieldid }}号菜地
+        </div>
+        <el-card id="content_text" shadow="never">
           希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（
           主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、
           上海市科普教育基地。
         </el-card>
         <div id="content_img">
           <div v-for="(item,index) in picture" :key="index" class="img">
-            <el-image :src="imgs" style="width:100%;height:100%"></el-image>
+            <el-image :src="imgs" style="width:100%;height:100%" />
           </div>
         </div>
         <div id="img_icon">
           <el-radio-group v-model="radio" fill="#F56C6C">
-            <span style="margin-left:3px"><el-radio :label="none" class="radio" fill="#F56C6C"></el-radio></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio"></el-radio></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio"></el-radio></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio"></el-radio></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" fill="#F56C6C" /></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
           </el-radio-group>
         </div>
       </div>
       <div id="time_data">
-        <div class="title">实时数据</div>
+        <div class="title">
+          实时数据
+        </div>
         <div class="data_circle">
-          <span style="margin-left:10px"><el-progress type="circle" :percentage="25" width="90" stroke-width="10" color="#E6A23C"></el-progress></span>
-          <span style="margin-left:10px"><el-progress type="circle" :percentage="45" width="90" stroke-width="10" color="#409EFF"></el-progress></span>
-          <span style="margin-left:10px"><el-progress type="circle" :percentage="30" width="90" stroke-width="10" color="#F56C6C"></el-progress></span>
-          <span style="margin-left:10px"><el-progress type="circle" :percentage="70" width="90" stroke-width="10" color="#67C23A"></el-progress></span>
+          <span style="margin-left:10px"><el-progress type="circle" :percentage="25" width="90" stroke-width="10" color="#E6A23C" /></span>
+          <span style="margin-left:10px"><el-progress type="circle" :percentage="45" width="90" stroke-width="10" color="#409EFF" /></span>
+          <span style="margin-left:10px"><el-progress type="circle" :percentage="30" width="90" stroke-width="10" color="#F56C6C" /></span>
+          <span style="margin-left:10px"><el-progress type="circle" :percentage="70" width="90" stroke-width="10" color="#67C23A" /></span>
         </div>
       </div>
     </div>
     <div id="right">
       <div id="video">
-        <el-image :src="videos" style="width:100%;height:100%;border-radius:16px"></el-image>
+        <el-image :src="videos" style="width:100%;height:100%;border-radius:16px" />
       </div>
     </div>
   </div>

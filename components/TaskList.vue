@@ -66,7 +66,7 @@
             </div>
             <!-- 2-6. 操作按钮 -->
             <div class="bottom clearfix">
-              <el-button v-if="currentIndex === 0" type="text" class="button">
+              <el-button v-show="currentIndex === 0" type="text" class="button">
                 加入任务
               </el-button>
               <el-button type="text" class="button">
@@ -628,15 +628,15 @@ export default {
 
 /* 导航栏开始 */
 .nav {
-  margin-left: 1%;
+  margin-left: 1.25%;
 }
-.nav .nav_items {
-  display: flex;
-  align-items: center;
-}
+/* .nav .nav_items {
+  line-height: 10px;
+} */
 
 .nav .nav_items .nav_items_line {
-  width: 6px;
+  float: left;
+  width: .6%;
   height: 33px;
   background: #ff6262;
   opacity: 1;
@@ -648,7 +648,6 @@ export default {
   font-size: 20px;
   font-family: Source Han Sans CN;
   font-weight: 400;
-  line-height: 42px;
   color: #999999;
   opacity: 1;
 }
@@ -662,17 +661,27 @@ export default {
 /* 导航栏结束 */
 
 .el-card{
+  float: left;
   width: 48%;
   margin: 1%;
-  float:left;
-  height: 343px;
+}
+@media screen and (max-width: 700px){
+  .nav {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .el-card {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
 .el-card .link {
   padding: 0;
 }
 .el-card .left {
   width: 50%;
-  background-color: lightcyan;
+  /* background-color: lightcyan; */
 }
 .el-card .left img {
   width: 100%;
@@ -707,12 +716,13 @@ export default {
 .el-card .right .center {
   display: flex;
   align-items: center;
-  margin-top: 10px;
+  margin: 10px 0;
 }
 
 .el-card .right .center img {
-  width: 63px;
-  height: 63px;
+  /* width: 63px;
+  height: 63px; */
+  width: 30%;
   border-radius: 999px;
 }
 .el-card .right .center .center_info {
@@ -722,7 +732,8 @@ export default {
 .el-card .right .center .scoolName {
   width: 179px;
   height: 26px;
-  font-size: 18px;
+  /* font-size: 18px; */
+  font-size: calc(100vw / 77);
   line-height: 43px;
    font-weight: 500;
   color: #666666;
@@ -730,7 +741,8 @@ export default {
 .el-card .right .center .scoolManager {
   width: 51px;
   height: 17px;
-  font-size: 15px;
+  /* font-size: 15px; */
+  font-size: calc(100vw / 85);
   line-height: 29px;
   color: #666666;
 }
@@ -738,7 +750,8 @@ export default {
 .el-card .right .center .update {
   width: 43px;
   height: 17px;
-  font-size: 15px;
+  /* font-size: 15px; */
+  font-size: calc(100vw / 85);
   font-weight: 400;
   line-height: 29px;
   color: #999999;
@@ -748,14 +761,15 @@ export default {
   flex-wrap: wrap;
   font-size: 9px;
   font-weight: 200;
-  text-align: center;
+  height: 100px;
+  overflow: hidden;
 }
 
 .center_down .members {
   padding-right: 2px;
   position: relative;
   /* background-color: lightgreen; */
-  /* height: 50px; */
+  height: 50px;
 }
 .center_down .members .name {
   position: absolute;
@@ -774,7 +788,8 @@ export default {
   display: flex;
   justify-content: space-around;
   bottom: 0;
-  right: 7%;
+  /* right: 7%; */
+  width: 100%;
   /* background-color: lightpink; */
 }
 
