@@ -1,61 +1,60 @@
 <template>
   <div class="task-detail">
-    <el-row>
-      <el-col :span="6">
-        <div>
-          <el-card class="box-card">
-            <div slot="header" class="clearfix">
-              <span class="task-title">播种豌豆</span>
-              <span>发起中</span>
-            </div>
-            <div class="text item">
-              <span class="task-position">希望小村菜地</span>
-              <el-button type="danger">
+    <div class="task-head">
+      <div class="task-head-info">
+        <el-card class="box-card">
+          <div slot="header" class="clearfix">
+            <span class="task-title">播种豌豆</span>
+            <span>发起中</span>
+          </div>
+          <div class="task-head-option">
+            <span class="task-position">希望小村菜地</span>
+            <div class="task-head-status">
+              <el-button type="danger" class="task-head-button">
                 加入任务
               </el-button>
             </div>
-          </el-card>
-          <el-card>
-            <div class="person-info">
-              <el-avatar :src="task.profile.avatarSrc" shape="circle" :size="120" />
-              <div class="card-info">
-                <div>
-                  <h2 class="person-title">
-                    {{ task.profile.school }}
-                  </h2>
-                </div>
-                <div>
-                  <span class="person-name"> {{ task.profile.name }}</span>
-                  <span class="person-time">{{ task.profile.time }}天前</span>
-                </div>
+          </div>
+        </el-card>
+        <el-card>
+          <div class="person-info">
+            <el-avatar :src="task.profile.avatarSrc" shape="circle" :size="120" />
+            <div class="card-info">
+              <div>
+                <h2 class="person-title">
+                  {{ task.profile.school }}
+                </h2>
+              </div>
+              <div class="card-info-person">
+                <span class="person-name"> {{ task.profile.name }}</span>
+                <span class="person-time">{{ task.profile.time }}天前</span>
               </div>
             </div>
-          </el-card>
-          <el-card>
-            <div slot="header" class="clearfix">
-              <span class="task-startTime">任务发起时间:2021.1.11</span>
+          </div>
+        </el-card>
+        <el-card>
+          <div slot="header" class="clearfix">
+            <span class="task-startTime">任务发起时间:{{ task.description.startTime }}</span>
+          </div>
+          <div class="task-text item">
+            {{ task.description.text }}
+          </div>
+        </el-card>
+        <el-card class="box-card">
+          <div class="head-icon">
+            <div v-for="(member,index) in task.members" :key="index" class="img-list">
+              <el-avatar :src="member.src" shape="circle" :size="40" class="img-item" />
+              <p class="avatar-name">
+                {{ member.name }}
+              </p>
             </div>
-            <div class="task-text item">
-              根据实践课程要求，在希望菜地进行豌豆
-              的种植与知识教育，提高同学的实践能力
-              让同学们更亲近大自然，感受大自然的魅力。
-            </div>
-          </el-card>
-          <el-card class="box-card">
-            <div class="head-icon">
-              <div v-for="(url,index) in urls" :key="index" class="img-list">
-                <el-avatar :src="url" shape="circle" :size="40" class="img-item" />
-              </div>
-            </div>
-          </el-card>
-        </div>
-      </el-col>
-      <el-col :span="18">
-        <div>
-          视频组件待封装
-        </div>
-      </el-col>
-    </el-row>
+          </div>
+        </el-card>
+      </div>
+      <!-- <div class="task-head-video">
+        视频组件待封装
+      </div> -->
+    </div>
     <el-row>
       <el-col :span="24">
         <div class="timeline">
@@ -79,33 +78,36 @@
     </el-row>
     <el-row>
       <el-col :span="24">
-        <div class="grid-content bg-purple task-info">
-          <el-card v-for="(url,index) in urls" :key="index" class="card-box">
-            <div class="task-info-box">
-              <div class="card-img">
-                <el-image :src="url" style="width: 160px; height: 160px" />
-              </div>
-              <div class="card-right">
-                <h2 class="task-info-title">
-                  玫瑰花种植
-                </h2>
-                <div class="task-info-text">
-                  <el-avatar :src="url" shape="circle" :size="60" />
-                  <div class="task-info-text-wrap2">
-                    <h2 class="task-info-person">
-                      刘老师
-                    </h2>
-                    <p class="task-info-position">
-                      新华小学
-                    </p>
+        <div class="task-info">
+          <div v-for="(card,index) in task.cards" :key="index" class="card-box">
+            <el-card>
+              <div class="task-info-box">
+                <div class="card-img">
+                  <el-image :src="card.taskImg" style="width: 160px; height: 160px" />
+                </div>
+                <div class="card-right">
+                  <h2 class="task-info-title">
+                    {{ card.title }}
+                  </h2>
+                  <div class="task-info-text">
+                    <el-avatar :src="card.avatarImg" shape="circle" :size="60" />
+                    <div class="task-info-text-wrap2">
+                      <h2 class="task-info-person">
+                        {{ card.name }}
+                      </h2>
+                      <p class="task-info-position">
+                        {{ card.position }}
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </el-card>
+            </el-card>
+          </div>
         </div>
       </el-col>
     </el-row>
+    <!-- <Video /> -->
   </div>
 </template>
 
@@ -123,21 +125,15 @@ export default {
           school: '重庆市渝北小学',
           name: '刘老师',
           time: '2'
-        }
+        },
         // 任务描述
-        // description:{
-
-        // }
+        description: {
+          startTime: '2021.1.11',
+          text: '根据实践课程要求，在希望菜地进行豌豆的种植与知识教育，提高同学的实践能力让同学们更亲近大自然，感受大自然的魅力。'
+        },
+        members: [{ src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }],
+        cards: [{ taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }]
       },
-      urls: [
-        'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg',
-        'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg',
-        'https://fuss10.elemecdn.com/0/6f/e35ff375812e6b0020b6b4e8f9583jpeg.jpeg',
-        'https://fuss10.elemecdn.com/9/bb/e27858e973f5d7d3904835f46abbdjpeg.jpeg',
-        'https://fuss10.elemecdn.com/d/e6/c4d93a3805b3ce3f323f7974e6f78jpeg.jpeg',
-        'https://fuss10.elemecdn.com/3/28/bbf893f792f03a54408b3b7a7ebf0jpeg.jpeg',
-        'https://fuss10.elemecdn.com/2/11/6535bcfb26e4c79b48ddde44f4b6fjpeg.jpeg'
-      ],
       taskCategory: ['同类任务', '菜地历史']
     }
   },
@@ -155,7 +151,7 @@ export default {
   padding: 0;
 }
 .task-detail{
-  margin-left:100px;
+  margin-left:5%;
   font-family: Source Han Sans CN;
 }
 .el-row {
@@ -197,6 +193,7 @@ export default {
 
   .img-list{
     display: flex;
+    flex-wrap: wrap;
   }
   .img-item{
     margin-right:10px ;
@@ -214,12 +211,14 @@ export default {
   .card-box{
     width:402px;
     /* height: 160px; */
-    margin:0px 40px 52px 0px;
+    padding: 0 15px;
+    margin-bottom:30px ;
   }
 
   .task-info-box{
     display: flex;
     width: 100%;
+    flex-wrap: wrap;
   }
 
   .task-footer{
@@ -348,7 +347,7 @@ export default {
   .el-button{
     font-size:24px;
     padding: 6px 12px;
-    float: right;
+    /* float: right; */
     margin-top: 14px;
   }
 
@@ -356,4 +355,117 @@ export default {
     font-size: 48px;
     font-weight: bold;
   }
+
+  .avatar-name{
+    font-size: 12px;
+    margin-top:2px;
+  }
+
+  /* 头部的布局 */
+  .task-head{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .task-head-info{
+    flex:1;
+  }
+
+  .task-head-option{
+    position: relative;
+    display: flex;
+    justify-content:space-between;
+  }
+  @media screen and (min-width:1702px){
+    .card-box{
+      width: 25%;
+    }
+  }
+   @media screen and (max-width:1702px){
+    .card-box{
+      width: 33%;
+    }
+  }
+  @media screen and (max-width:1410px){
+    .card-box{
+      width: 33%;
+    }
+  }
+
+  @media screen and (max-width:1288px){
+    .card-box{
+      width: 50%;
+    }
+    .task-info-box{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  @media screen and (max-width: 930px){
+    /* .task-info-box{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    } */
+  }
+
+  /* @media screen and (max-width: 850px){
+    .card-box{
+      width: 40%;
+    }
+  } */
+  @media screen and (max-width: 700px) {
+    .task-title{
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+    }
+
+    .task-head-option{
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .timeline-title{
+      text-align: left;
+    }
+
+    .task-detail{
+      margin-left: 0px;
+    }
+  }
+  @media screen and (max-width: 520px){
+    .card-box{
+      width: 100%;
+    }
+  }
+  @media screen and (max-width: 459px){
+    .card-box{
+      width: 100%;
+    }
+    .person-info{
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .card-info-person{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+
+  @media screen and (max-width: 430px){
+    .task-info-box{
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  /* 底部的布局 */
   </style>
