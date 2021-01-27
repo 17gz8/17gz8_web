@@ -1,6 +1,8 @@
 <template>
   <div>
-    <p>shouye首页</p>
+    <p>
+      shouye首页
+    </p>
   </div>
 </template>
 
