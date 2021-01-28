@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 <template>
   <el-card class="bigBox">
     <div class="container">
@@ -36,7 +35,7 @@
               </div>
               <el-image id="btn" :src="img008" class="helpRight" @click="handle" />
             </div>
-            <div v-show="isShow" id="allExper" class="allExpers">
+            <div id="allExper" class="allExpers">
               <div v-for="(item,index) in allImgs" :key="index" class="Expers">
                 <el-image :src="item.url" class="expers" />
               </div>
@@ -57,6 +56,7 @@ export default {
   },
   data () {
     return {
+      // 当前大图显示的专家信息
       currentExper: '汪明荃',
       currentPosition: '陕西农业大学教授',
       currentPoint: '农作物的生长特效，病理研究',
@@ -72,12 +72,14 @@ export default {
       img008: require('../../static/images/008.png'),
       img100: require('../../static/images/100.png'),
       img101: require('../../static/images/101.png'),
+      // 右下专家列表的专家图片
       imgs: [
         { url: require('../../static/images/006.png') },
         { url: require('../../static/images/004.png') },
         { url: require('../../static/images/005.png') },
         { url: require('../../static/images/003.png') }
       ],
+      // 隐藏的专家列表图片
       allImgs: [
         { url: require('../../static/images/006.png') },
         { url: require('../../static/images/004.png') },
@@ -87,12 +89,13 @@ export default {
         { url: require('../../static/images/004.png') },
         { url: require('../../static/images/00x.png') },
         { url: require('../../static/images/003.png') }
-      ],
-      methods: {
-        handle () {
-          alert('123')
-        }
-      }
+      ]
+    }
+  },
+  methods: {
+    handle () {
+      const btn = document.getElementById('allExper')
+      btn.style.display = 'flex'
     }
   }
 }
@@ -138,7 +141,7 @@ export default {
   align-items:space-around;
    /* margin-left:50px; */
 }
-/* 介绍标题 */
+/* 介绍当前专家标题 */
 .experIntro{
 flex:1;
 width:100%;
@@ -169,7 +172,7 @@ position: relative;
   line-height:24px;
   text-align:left;
 }
-/* 详细介绍 */
+/* 当前专家详细介绍 */
 .detailIntro{
   flex:1;
   width:100%;
@@ -241,12 +244,12 @@ position: relative;
   margin:20px 0 10px 0;
   row-gap:1%;
 }
-/* 点击右键后显示的其余专家 */
+/* 触发点击事件前隐藏的专家列表 */
 .experList .experImgs .allExpers{
   flex:2;
   width:100%;
-  display:flex;
-  /* display:none; */
+  /* display:flex; */
+  display:none;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
@@ -342,4 +345,5 @@ position: relative;
   line-height:18px;
 }
 }
+/* 媒体查询（自适应）结束 */
 </style>
