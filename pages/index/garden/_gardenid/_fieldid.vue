@@ -10,7 +10,7 @@
         </el-card>
         <div id="content_img">
           <div v-for="(item,index) in picture" :key="index" class="img">
-            <el-image :src="imgs" style="width:100%;height:100%"></el-image>
+            <img :src="imgs" :class="{'active':index==isActive && isClick,'imgss':!isClick}" @click="showdifference(index)" class="imgss"/>
           </div>
         </div>
         <div id="img_icon">
@@ -45,6 +45,9 @@ export default {
   data () {
     return {
       fieldid: '',
+      isBig: '',
+      isClick: false,
+      isActive: '-1',
       picture: [
         { id: '1', name: '菜地4' },
         { id: '2', name: '菜地2' },
@@ -58,6 +61,18 @@ export default {
   },
   created () {
     this.fieldid = this.$route.params.fieldid
+  },
+  methods: {
+    showdifference (index) {
+      this.isActive = index
+      console.log(this.isActive)
+      if (this.isClick[index] === false) {
+        this.isClick = !this.isClick
+      } else {
+        this.isClick = !this.isClick
+        console.log(this.isClick)
+      }
+    }
   }
 }
 </script>
@@ -88,6 +103,19 @@ export default {
 .data_circle{
   margin-top: 1.875em;
   margin-left: 0.625em;
+}
+.imgss{
+  width:100%;
+  height:100%;
+  border-radius: 6px;
+}
+.active{
+  width: 30em;
+  height: 20em;
+  z-index: 100;
+  position: absolute;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .title{
   width: 100%;
@@ -141,8 +169,7 @@ export default {
 }
 #video{
   width: 100%;
-  height: 95%;
-  margin-top: 0.5em;
+  height: 100%;
   border-radius: 16px;
   /* background-color:#999999; */
 }
@@ -198,6 +225,12 @@ export default {
   }
   #left{
     margin-right:0;
+  }
+  .active{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 6px;
   }
 }
 @media (max-width: 440px){
