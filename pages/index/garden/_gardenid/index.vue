@@ -23,25 +23,22 @@
       <div class="cardTask">
         <el-row v-for="(item2,index3) in task" :key="index3">
           <el-card v-for="(item5,index4) in item2" :key="index4" class="gardenTask" :body-style="{ padding: '0px' }">
-            <div>
-              <el-row>
-                <div class="img">
-                  <el-avatar :size="60" :src="item5.pic" />
-                  <!-- <el-avatar :size="50" : src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" /> -->
-                </div>
-                <div class="text">
-                  <span>{{ item5.type }}</span>
-                  <p>{{ item5.school }}{{ item5.teacher }}</p>
-                </div>
-                <div class="img2">
-                  <img src="item5.pic2" alt="完成" ,width="40px" ,height="40px">
-                </div>
-                <div class="buttom">
-                  <el-button type="text">
-                    查看
-                  </el-button>
-                </div>
-              </el-row>
+            <div class="ka">
+              <div class="img">
+                <el-avatar :size="60" :src="item5.pic" />
+              </div>
+              <div class="text">
+                <span>{{ item5.type }}</span>
+                <p>{{ item5.school }}{{ item5.teacher }}</p>
+              </div>
+              <div class="img2">
+                <img :src="item5.pic2" alt="完成" ,width="40px" ,height="40px">
+              </div>
+              <div class="buttom">
+                <el-button type="text">
+                  查看
+                </el-button>
+              </div>
             </div>
           </el-card>
         </el-row>
@@ -80,16 +77,16 @@ export default {
       ],
       task: [
         [
-          { type: '南瓜种植', school: '希望小学', teacher: '赵老师', pic: '@/assets/images/task1.jpg', pic2: '' },
-          { type: '果树培养', school: '哥谭小学', teacher: '赵老师', pic: '', pic2: '' }
+          { type: '南瓜种植', school: '希望小学', teacher: '赵老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') },
+          { type: '果树培养', school: '哥谭小学', teacher: '赵老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') }
         ],
         [
-          { type: '葡萄种植', school: '勤奋中学', teacher: '刘老师', pic: '', pic2: '' },
-          { type: '鲜花种植', school: '获得转小学', teacher: '熙老师', pic: '', pic2: '' }
+          { type: '葡萄种植', school: '勤奋中学', teacher: '刘老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') },
+          { type: '鲜花种植', school: '获得转小学', teacher: '熙老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') }
         ],
         [
-          { type: '西瓜种植', school: '重庆重点小学', teacher: '马老师', pic: '', pic2: '' },
-          { type: '土豆种植', school: '新华中学', teacher: '钱老师', pic: '', pic2: '' }
+          { type: '西瓜种植', school: '重庆重点小学', teacher: '马老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') },
+          { type: '土豆种植', school: '新华中学', teacher: '钱老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') }
         ]
       ]
     }
@@ -126,19 +123,24 @@ h3 span{
   margin: 1%;
   float:left;
 }
+.ka{
+  display: flex;
+  justify-content:center;
+}
 .gardenTask{
   margin-left: 7%;
   width:40%;
 }
 .img{
   width: 40px;
-  float: left;
+  /* float: left; */
 }
 .img2{
   width: 40px;
+  /* float: left; */
 }
 .text{
-  float: left;
+  /* float: left; */
   margin-left: 20px;
 }
 .text span{
@@ -146,7 +148,7 @@ h3 span{
 }
 .buttom {
   width: 30px;
-    float: right;
-    border-left: 5px rgb(233, 18, 72);
+    /* float: right; */
+    /* border-left: 5px rgb(233, 18, 72); */
 }
 </style>
