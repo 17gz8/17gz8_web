@@ -4,16 +4,12 @@
       <nuxt-link :to="`/garden/${item.id}`">
         <div class="left">
           <el-container>
-            <el-aside width="400px">
-              <div class="demo-image">
-                <div class="block">
-                  <el-image
-                    style="width: 100%; height: 409px"
-                    :src="url"
-                    fit="cover"
-                  />
-                </div>
-              </div>
+            <el-aside width="50%" style="overflow: hidden">
+              <el-image
+                style="width: 100%; height: 100%"
+                :src="item.url"
+                :fit="fit"
+              />
             </el-aside>
             <el-container>
               <el-header>{{ item.name }}</el-header>
@@ -59,25 +55,17 @@ export default {
   data () {
     return {
       gardens: [
-        { id: '1', name: '希望菜园', src: '/garden/1', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区' },
-        { id: '2', name: '菜园子菜园', src: '/garden/2', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX' },
-        { id: '3', name: '长得快菜园', src: '/garden/3', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX' },
-        { id: '4', name: '长得多菜园', src: '/garden/4', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX' }
+        { id: '1', name: '希望菜园', src: '/garden/1', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区', url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
+        { id: '2', name: '菜园子菜园', src: '/garden/2', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX', url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
+        { id: '3', name: '长得快菜园', src: '/garden/3', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX', url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
+        { id: '4', name: '长得多菜园', src: '/garden/4', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX', url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' }
       ],
-      url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg'
+      fit: 'cover'
     }
   }
 }
 </script>
 <style scoped>
-
-.demo-image{
-  height: 100%;
-}
-
-.block{
-  height:100%;
-}
 
 .el-card{
   width: 48%;
@@ -85,11 +73,26 @@ export default {
   float:left;
 
 }
-
-.test1{
-  display: flex;
-  align-items: center;
+@media screen and (max-width: 1300px){
+  .nav {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .el-card {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
+  }
 }
+@media screen and (min-width: 2000px){
+  .el-card {
+    width: 30%;
+  }
+}
+ .test1{
+   display: flex;
+   align-items: center;
+ }
  .el-card .el-container {
    width: 100%;
  }
