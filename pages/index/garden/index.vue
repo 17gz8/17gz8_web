@@ -73,7 +73,7 @@ export default {
   float:left;
 
 }
-@media screen and (max-width: 800px){
+@media screen and (max-width: 1300px){
   .nav {
     margin-top: 50px;
     margin-bottom: 20px;
