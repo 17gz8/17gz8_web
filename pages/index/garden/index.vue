@@ -73,6 +73,22 @@ export default {
   float:left;
 
 }
+@media screen and (max-width: 800px){
+  .nav {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .el-card {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 1600px){
+  .el-card {
+    width: 30%;
+  }
+}
  .el-card .el-container {
    width: 100%;
  }
