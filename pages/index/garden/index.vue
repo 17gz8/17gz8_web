@@ -4,12 +4,13 @@
       <nuxt-link :to="`/garden/${item.id}`">
         <div class="left">
           <el-container>
-            <el-aside width="200px">
+            <el-aside width="400px">
               <div class="demo-image">
                 <div class="block">
                   <el-image
-                    style="width: 100%; height: 100%"
+                    style="width: 100%; height: 409px"
                     :src="url"
+                    fit="cover"
                   />
                 </div>
               </div>
@@ -20,7 +21,7 @@
                 <p class="title">
                   {{ item.text }}
                 </p>
-                <div style="display: flex">
+                <div class="test1" style="display: flex">
                   <img src="../../../assets/taskImg/location.png" alt="" style="width: 17px; height: 17px">
                   <p class="addres">
                     {{ item.addres }}
@@ -70,11 +71,24 @@ export default {
 </script>
 <style scoped>
 
+.demo-image{
+  height: 100%;
+}
+
+.block{
+  height:100%;
+}
+
 .el-card{
   width: 48%;
   margin: 1%;
   float:left;
 
+}
+
+.test1{
+  display: flex;
+  align-items: center;
 }
  .el-card .el-container {
    width: 100%;

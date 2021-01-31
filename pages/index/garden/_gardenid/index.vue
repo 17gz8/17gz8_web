@@ -130,9 +130,11 @@ h3 span{
   float: left;
 }
 .img2{
+  float: right;
   width: 40px;
 }
 .text{
+  float: left;
   width: 190px;
 }
 .buttom {
