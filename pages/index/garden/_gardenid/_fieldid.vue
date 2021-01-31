@@ -2,39 +2,43 @@
   <div class="container">
     <div id="left">
       <div id="content">
-        <div id="content_title" class="title">{{ fieldid }}号菜地</div>
-        <el-card shadow="never" id="content_text">
+        <div id="content_title" class="title">
+          {{ fieldid }}号菜地
+        </div>
+        <el-card id="content_text" shadow="never">
           希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（
           主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、
           上海市科普教育基地。
         </el-card>
         <div id="content_img">
           <div v-for="(item,index) in picture" :key="index" class="img">
-            <el-image :src="imgs" style="width:100%;height:100%"></el-image>
+            <img :src="imgs" :class="{'active':index==isActive && isClick,'imgss':!isClick}" class="imgss" @click="showdifference(index)">
           </div>
         </div>
         <div id="img_icon">
           <el-radio-group v-model="radio" fill="#F56C6C">
-            <span style="margin-left:3px"><el-radio :label="none" class="radio" fill="#F56C6C"></el-radio></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio"></el-radio></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio"></el-radio></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio"></el-radio></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" fill="#F56C6C" /></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
+            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
           </el-radio-group>
         </div>
       </div>
       <div id="time_data">
-        <div class="title">实时数据</div>
+        <div class="title">
+          实时数据
+        </div>
         <div class="data_circle">
-          <span class="circle"><el-progress type="circle" :percentage="25" width="80" stroke-width="12" color="#E6A23C"></el-progress></span>
-          <span class="circle"><el-progress type="circle" :percentage="45" width="80" stroke-width="12" color="#409EFF"></el-progress></span>
-          <span class="circle"><el-progress type="circle" :percentage="30" width="80" stroke-width="12" color="#F56C6C"></el-progress></span>
-          <span class="circle"><el-progress type="circle" :percentage="70" width="80" stroke-width="12" color="#67C23A"></el-progress></span>
+          <span class="circle"><el-progress type="circle" :percentage="25" width="80" stroke-width="12" color="#E6A23C" /></span>
+          <span class="circle"><el-progress type="circle" :percentage="45" width="80" stroke-width="12" color="#409EFF" /></span>
+          <span class="circle"><el-progress type="circle" :percentage="30" width="80" stroke-width="12" color="#F56C6C" /></span>
+          <span class="circle"><el-progress type="circle" :percentage="70" width="80" stroke-width="12" color="#67C23A" /></span>
         </div>
       </div>
     </div>
     <div id="right">
       <div id="video">
-        <el-image :src="videos" style="width:100%;height:100%;border-radius:16px"></el-image>
+        <el-image :src="videos" style="width:100%;height:100%;border-radius:16px" />
       </div>
     </div>
   </div>
@@ -45,6 +49,9 @@ export default {
   data () {
     return {
       fieldid: '',
+      isBig: '',
+      isClick: false,
+      isActive: '-1',
       picture: [
         { id: '1', name: '菜地4' },
         { id: '2', name: '菜地2' },
@@ -58,6 +65,19 @@ export default {
   },
   created () {
     this.fieldid = this.$route.params.fieldid
+  },
+  methods: {
+    showdifference (index) {
+      this.isActive = index
+      // eslint-disable-next-line no-console
+      console.log(this.isActive)
+      if (this.isClick[index] === false) {
+        this.isClick = !this.isClick
+      } else {
+        this.isClick = !this.isClick
+        // console.log(this.isClick)
+      }
+    }
   }
 }
 </script>
@@ -88,6 +108,19 @@ export default {
 .data_circle{
   margin-top: 1.875em;
   margin-left: 0.625em;
+}
+.imgss{
+  width:100%;
+  height:100%;
+  border-radius: 6px;
+}
+.active{
+  width: 30em;
+  height: 20em;
+  z-index: 100;
+  position: absolute;
+  border-radius: 16px;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 .title{
   width: 100%;
@@ -141,8 +174,7 @@ export default {
 }
 #video{
   width: 100%;
-  height: 95%;
-  margin-top: 0.5em;
+  height: 100%;
   border-radius: 16px;
   /* background-color:#999999; */
 }
@@ -198,6 +230,12 @@ export default {
   }
   #left{
     margin-right:0;
+  }
+  .active{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    border-radius: 6px;
   }
 }
 @media (max-width: 440px){

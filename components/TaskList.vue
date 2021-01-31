@@ -621,8 +621,6 @@ export default {
 
 <style scoped>
 .task-list {
-   width: 100%vh;
-  /* background-color: lightblue; */
   margin: 2% 3% 0;
 }
 
@@ -630,10 +628,6 @@ export default {
 .nav {
   margin-left: 1.25%;
 }
-/* .nav .nav_items {
-  line-height: 10px;
-} */
-
 .nav .nav_items .nav_items_line {
   float: left;
   width: .6%;
@@ -659,7 +653,7 @@ export default {
   color: #707070;
 }
 /* 导航栏结束 */
-
+/* 列表数据开始 */
 .el-card{
   float: left;
   width: 48%;
@@ -676,6 +670,11 @@ export default {
     margin-bottom: 20px;
   }
 }
+@media screen and (min-width: 1400px){
+  .el-card {
+    width: 30%;
+  }
+}
 .el-card .link {
   padding: 0;
 }
@@ -683,12 +682,16 @@ export default {
   width: 50%;
   /* background-color: lightcyan; */
 }
+/* 卡片左侧图片开始 */
 .el-card .left img {
   width: 100%;
   height: 100%;
   border-radius: 11px;
   object-fit: cover;
 }
+/* 卡片左侧图片结束 */
+
+/* 卡片右侧开始 */
 .el-card .right {
   width: 50%;
   position: relative;
@@ -762,6 +765,7 @@ export default {
   font-size: 9px;
   font-weight: 200;
   height: 100px;
+  width: 91%;
   overflow: hidden;
 }
 
@@ -807,4 +811,8 @@ export default {
   color: #ffffff;
 }
 /* 右侧下方操作按钮结束 */
+
+/* 卡片右侧结束 */
+
+/* 列表数据结束 */
 </style>

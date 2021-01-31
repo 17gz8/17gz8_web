@@ -2,13 +2,17 @@
   <div class="container">
     <div class="warp">
       <h3><span> 菜园{{ gardenid }}</span></h3>
-      <el-card v-for="(item,index) in fields" :key="index">
-        <nuxt-link :to="`/garden/${gardenid}/${item.id}`">
-          <div>
-            <p>{{ item.name }}</p>
-          </div>
-        </nuxt-link>
-      </el-card>
+      <el-carousel indicator-position="outside">
+        <el-carousel-item v-for="(item,index) in fields" :key="index">
+          <el-card v-for="(card,index1) in item" :key="index1">
+            <nuxt-link :to="`/garden/${gardenid}/${item.id}`">
+              <div>
+                <p>{{ card.name }}</p>
+              </div>
+            </nuxt-link>
+          </el-card>
+        </el-carousel-item>
+      </el-carousel>
     </div>
     <div class="warp">
       <h3><span>菜园任务</span> </h3>
@@ -24,10 +28,26 @@ export default {
   data () {
     return {
       gardenid: '',
-      fields: [
+      fields: [[
         { id: '1', name: '菜地1' },
         { id: '2', name: '菜地2' },
         { id: '3', name: '菜地3' }
+      ],
+      [
+        { id: '1', name: '菜地1' },
+        { id: '2', name: '菜地2' },
+        { id: '3', name: '菜地3' }
+      ],
+      [
+        { id: '1', name: '菜地1' },
+        { id: '2', name: '菜地2' },
+        { id: '3', name: '菜地3' }
+      ],
+      [
+        { id: '1', name: '菜地1' },
+        { id: '2', name: '菜地2' },
+        { id: '3', name: '菜地3' }
+      ]
       ]
     }
   },
@@ -46,7 +66,7 @@ export default {
 }
 h3 span{
   padding: 2px 10px;
-  border-left: 5px solid rgb(124, 146, 245)
+  border-left: 5px solid rgb(233, 18, 72)
 }
 .el-card{
   width: 31%;
