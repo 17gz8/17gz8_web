@@ -47,6 +47,6 @@ For detailed explanation on how things work, check out [Nuxt.js docs](https://nu
         # 开发后提交自己的代码
         $ git status //查看本地修改
         $ git add . 
-        $ git commit -m '[feat]:新增首页'//提交修改并注释，详看git注释规范
+        $ git commit -m '[feat]:新增首页'//提交修改并注释，详看
         $ git push origin develop //push 代码
         
