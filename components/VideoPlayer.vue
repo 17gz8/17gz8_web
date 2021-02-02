@@ -26,19 +26,23 @@ export default {
           height: '918px',
           // controlBar: false,  // 设为false不渲染控制条DOM元素，只设置controls为false虽然不展示，但是存在
           // textTrackDisplay: false,  // 不渲染字幕相关DOM
-          userActions: {
-            hotkeys: true // 是否支持热键
-          },
+          // userActions: {
+          //   hotkeys: true // 是否支持热键
+          // },
           notSupportedMessage: '此视频暂无法播放，请稍后再试',
           techOrder: ['html5'], // 定义Video.js技术首选的顺序
           sources: [
             {
-              src: 'https://video.pearvideo.com/mp4/adshort/20210130/cont-1718696-15593963_adpkg-ad_hd.mp4',
+              src: '',
               type: 'video/mp4'
             }
           ]
         }
       }
+    },
+    src: {
+      type: String,
+      default: 'https://video.pearvideo.com/mp4/adshort/20210202/cont-1718989-15596269_adpkg-ad_hd.mp4'
     }
   },
   data () {
@@ -48,6 +52,7 @@ export default {
   },
   // 初始化播放器
   mounted () {
+    this.options.sources[0].src = this.src
     this.player = videojs(
       this.$refs.videoNode,
       this.options,
