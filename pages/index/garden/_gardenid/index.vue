@@ -10,10 +10,23 @@
         <el-carousel-item v-for="(item,index) in fields" :key="index">
           <el-card v-for="(card,index1) in item" :key="index1">
             <nuxt-link :to="`/garden/${gardenid}/${card.id}`">
-              <div>
-                <p>{{ card.name }}</p>
-              </div>
+              <el-popover
+                placement="top-start"
+                title="菜地数据"
+                trigger="hover"
+              >
+                <el-row>
+                  <el-progress type="circle" :percentage="25" width="80" color="#e6a23c" stroke-width="10" />
+                  <el-progress type="circle" :percentage="25" width="80" color="#6f7ad3" stroke-width="10" />
+                  <el-progress type="circle" :percentage="25" width="80" color="#5cb87a" stroke-width="10" />
+                  <el-progress type="circle" :percentage="25" width="80" color="#f56c6c" stroke-width="10" />
+                </el-row>
+                <p slot="reference">
+                  {{ card.name }}
+                </p>
+              </el-popover>
             </nuxt-link>
+            <video-player class="video-container" />
           </el-card>
         </el-carousel-item>
       </el-carousel>
@@ -32,12 +45,19 @@
                 <p>{{ item5.school }}{{ item5.teacher }}</p>
               </div>
               <div class="img2">
-                <img :src="item5.pic2" alt="完成" ,width="40px" ,height="40px">
+                <img :src="item5.pic2" alt="完成">
               </div>
-              <div class="buttom">
-                <el-button type="text">
-                  查看
-                </el-button>
+              <div>
+                <div class="kong" />
+                <div class="shu" />
+              </div>
+              <div>
+                <div class="kong2" />
+                <div class="buttom">
+                  <el-button type="text">
+                    查看
+                  </el-button>
+                </div>
               </div>
             </div>
           </el-card>
@@ -111,45 +131,46 @@ export default {
 }
 h3 span{
   padding: 2px 10px;
-  border-left: 5px solid rgb(233, 18, 72)
+  border-left: 5px solid rgb(233, 18, 72);
+  font-size: 35px;
 }
 .cardTask{
   margin: 0,auto;
   margin-top: 20px;
-  /* width: 80%; */
+
 }
+  .video-container{
+    width: 100%;
+    margin-top:10px;
+    box-shadow: 0px 0px 3px 3px rgba(168, 168, 168, 0.5);
+  }
 .el-card{
   width: 31%;
   margin: 1%;
   float:left;
 }
+.img3{
+  margin: 0 auto;
+}
 .ka{
   display: flex;
-  justify-content:center;
+  justify-content:space-around;
 }
 .gardenTask{
-  margin-left: 7%;
-  width:40%;
+  margin-left: 11%;
+  width:33%;
 }
-.img{
-  width: 40px;
-  /* float: left; */
-}
-.img2{
-  float: right;
-  width: 40px;
-  /* float: left; */
-}
-.text{
-  /* float: left; */
-  margin-left: 20px;
+.shu{
+  border-left: 2px solid rgb(233, 18, 72);
+  height: 25px;
 }
 .text span{
   font-size: 25px;
 }
-.buttom {
-  width: 30px;
-    /* float: right; */
-    /* border-left: 5px rgb(233, 18, 72); */
+.kong{
+  height: 30%;
+}
+.kong2{
+  height: 27%;
 }
 </style>
