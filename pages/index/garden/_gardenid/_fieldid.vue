@@ -16,12 +16,6 @@
           </div>
         </div>
         <div id="img_icon">
-          <!-- <el-radio-group v-model="radio" fill="#F56C6C">
-            <span class="_radio"><el-radio :label="none" class="radio" fill="#F56C6C" /></span>
-            <span class="_radio"><el-radio :label="none" class="radio" /></span>
-            <span class="_radio"><el-radio :label="none" class="radio" /></span>
-            <span class="_radio"><el-radio :label="none" class="radio" /></span>
-          </el-radio-group> -->
           <!-- <div v-for="(item,index) in Radio" :key="index" class="_radio" :class="{'_radio_active':index==radio_active && risClick, '_radio':!risClick}" @click="handleRadio(index)"><span class="_radio_intent"></span></div> -->
           <div v-for="(item,index) in Radio" :key="index" class="_radio" :class="{'_radio_active':index==radio_active}" @click="handleRadio(index)">
             <span class="_radio_intent" />
@@ -78,6 +72,9 @@
     </div>
     <div id="right">
       <div class="video">
+        <div class="right_text">
+          {{ fieldid }}号菜地
+        </div>
         <video-player class="video_content" />
         <!-- <el-image :src="videos" style="width:100%;height:100%;border-radius:16px" /> -->
       </div>
@@ -95,16 +92,22 @@ export default {
       isActive: '-1',
       radio_active: '0',
       Radio: [
-        { id: '1', name: '菜地4' },
-        { id: '2', name: '菜地2' },
-        { id: '3', name: '菜地3' },
-        { id: '4', name: '菜地1' }
+        { id: '1' },
+        { id: '2' },
+        { id: '3' },
+        { id: '4' }
       ],
       picture: [
         { id: '1', name: '菜地4' },
         { id: '2', name: '菜地2' },
         { id: '3', name: '菜地3' },
         { id: '4', name: '菜地1' }
+      ],
+      Imgss: [
+        { url: require('../../../../static/images/garden01.jpg') },
+        { url: require('../../../../static/images/garden02.jpg') },
+        { url: require('../../../../static/images/garden03.jpg') },
+        { url: require('../../../../static/images/garden04.jpg') }
       ],
       imgs: require('../../../../static/images/garden01.jpg'),
       videos: require('../../../../static/images/garden02.jpg'),
@@ -129,6 +132,7 @@ export default {
     handleRadio (index) {
       this.radio_active = index
       console.log(this.radio_active)
+      this.imgs = this.Imgss[index].url
     },
     format_1 (percentage) {
       return `${percentage}%` + '\n' + '温度'
@@ -153,20 +157,35 @@ export default {
 </style>
 <style scoped>
 #right{
-  margin-top:em;
+  margin-top:.6em;
   /* float: left; */
+  position: relative;
   overflow: hidden;
   width: 60%;
-  height: 85vh;
-  /* background-color: blue; */
+  height: 42em;
+  border-radius: 16px;
+  background-color: black;
 }
 #left{
   margin-top:0.625em;
   float: left;
   width: 40%;
-  height: 85vh;
+  height: 42em;
   padding-left:2%;
+  overflow: hidden;
   /* background-color: brown; */
+}
+.right_text{
+  left: .4em;
+  top: .4em;
+  padding: .2em;
+  position: absolute;
+  border-radius: 16px;
+  color: white;
+  font-size: 2em;
+  font-weight: bolder;
+  background-color: rgba(255, 255, 255, 0.377);
+  z-index: 100;
 }
 #content{
   width:90%;
@@ -266,7 +285,7 @@ width: 1em;
 }
 #img_icon{
   width: 30%;
-  height: 1.5em;
+  height: 1em;
   margin-top: 0.625em;
   margin-left:40%;
   /* background-color: darkcyan; */
@@ -286,7 +305,7 @@ width: 1em;
 }
 .video_content{
   width: 100%;
-  height:100%;
+  height: 100%;
   object-fit:fill;
   border-radius:16px;
 }
@@ -299,6 +318,9 @@ width: 1em;
 @media (max-width:1024px) {
   #left,#right{
     width: 100%;
+  }
+  #right{
+    margin-top: 2em;
   }
   #left{
     height: auto;
