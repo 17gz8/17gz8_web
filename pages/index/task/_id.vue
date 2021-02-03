@@ -68,6 +68,11 @@
       </el-col>
     </el-row>
     <el-row>
+      <el-col>
+        <time-axis />
+      </el-col>
+    </el-row>
+    <el-row>
       <el-col :span="24">
         <div class="timeline-info">
           <el-tabs type="border-card">
@@ -156,7 +161,9 @@
 </template>
 
 <script>
+import TimeAxis from '../../../components/TimeAxis.vue'
 export default {
+  components: { TimeAxis },
   data () {
     return {
       currentIndex: 0,
