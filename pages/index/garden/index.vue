@@ -17,7 +17,7 @@
                 <p class="title">
                   {{ item.text }}
                 </p>
-                <div style="display: flex">
+                <div class="test1" style="display: flex">
                   <img src="../../../assets/taskImg/location.png" alt="" style="width: 17px; height: 17px">
                   <p class="addres">
                     {{ item.addres }}
@@ -60,7 +60,7 @@ export default {
         { id: '3', name: '长得快菜园', src: '/garden/3', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX', url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
         { id: '4', name: '长得多菜园', src: '/garden/4', text: '希望小村菜地距离重庆时钟线约有巫师公里，栈底面积5000亩（主题参观去为400亩）。是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地。', addres: '重庆市巴南区XXXX', url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' }
       ],
-      fit: 'scale-down'
+      fit: 'cover'
     }
   }
 }
@@ -73,6 +73,26 @@ export default {
   float:left;
 
 }
+@media screen and (max-width: 1300px){
+  .nav {
+    margin-top: 50px;
+    margin-bottom: 20px;
+  }
+  .el-card {
+    float: none;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+}
+@media screen and (min-width: 2000px){
+  .el-card {
+    width: 30%;
+  }
+}
+ .test1{
+   display: flex;
+   align-items: center;
+ }
  .el-card .el-container {
    width: 100%;
  }
