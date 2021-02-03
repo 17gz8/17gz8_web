@@ -16,12 +16,16 @@
           </div>
         </div>
         <div id="img_icon">
-          <el-radio-group v-model="radio" fill="#F56C6C">
-            <span style="margin-left:3px"><el-radio :label="none" class="radio" fill="#F56C6C" /></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
-            <span style="margin-left:3px"><el-radio :label="none" class="radio" /></span>
-          </el-radio-group>
+          <!-- <el-radio-group v-model="radio" fill="#F56C6C">
+            <span class="_radio"><el-radio :label="none" class="radio" fill="#F56C6C" /></span>
+            <span class="_radio"><el-radio :label="none" class="radio" /></span>
+            <span class="_radio"><el-radio :label="none" class="radio" /></span>
+            <span class="_radio"><el-radio :label="none" class="radio" /></span>
+          </el-radio-group> -->
+          <!-- <div v-for="(item,index) in Radio" :key="index" class="_radio" :class="{'_radio_active':index==radio_active && risClick, '_radio':!risClick}" @click="handleRadio(index)"><span class="_radio_intent"></span></div> -->
+          <div v-for="(item,index) in Radio" :key="index" class="_radio" :class="{'_radio_active':index==radio_active}" @click="handleRadio(index)">
+            <span class="_radio_intent" />
+          </div>
         </div>
       </div>
       <div id="time_data">
@@ -29,16 +33,53 @@
           实时数据
         </div>
         <div class="data_circle">
-          <span class="circle"><el-progress type="circle" :percentage="25" width="80" stroke-width="12" color="#E6A23C" /></span>
-          <span class="circle"><el-progress type="circle" :percentage="45" width="80" stroke-width="12" color="#409EFF" /></span>
-          <span class="circle"><el-progress type="circle" :percentage="30" width="80" stroke-width="12" color="#F56C6C" /></span>
-          <span class="circle"><el-progress type="circle" :percentage="70" width="80" stroke-width="12" color="#67C23A" /></span>
+          <span class="circle">
+            <el-progress
+              type="circle"
+              :percentage="25"
+              width="80"
+              stroke-width="12"
+              color="#E6A23C"
+              :format="format_1"
+            />
+          </span>
+          <span class="circle">
+            <el-progress
+              type="circle"
+              :percentage="45"
+              width="80"
+              stroke-width="12"
+              color="#409EFF"
+              :format="format_2"
+            />
+          </span>
+          <span class="circle">
+            <el-progress
+              type="circle"
+              :percentage="30"
+              width="80"
+              stroke-width="12"
+              color="#F56C6C"
+              :format="format_3"
+            />
+          </span>
+          <span class="circle">
+            <el-progress
+              type="circle"
+              :percentage="70"
+              width="80"
+              stroke-width="12"
+              color="#67C23A"
+              :format="format_4"
+            />
+          </span>
         </div>
       </div>
     </div>
     <div id="right">
-      <div id="video">
-        <el-image :src="videos" style="width:100%;height:100%;border-radius:16px" />
+      <div class="video">
+        <video-player class="video_content" />
+        <!-- <el-image :src="videos" style="width:100%;height:100%;border-radius:16px" /> -->
       </div>
     </div>
   </div>
@@ -52,6 +93,13 @@ export default {
       isBig: '',
       isClick: false,
       isActive: '-1',
+      radio_active: '0',
+      Radio: [
+        { id: '1', name: '菜地4' },
+        { id: '2', name: '菜地2' },
+        { id: '3', name: '菜地3' },
+        { id: '4', name: '菜地1' }
+      ],
       picture: [
         { id: '1', name: '菜地4' },
         { id: '2', name: '菜地2' },
@@ -71,19 +119,41 @@ export default {
       this.isActive = index
       // eslint-disable-next-line no-console
       console.log(this.isActive)
-      if (this.isClick[index] === false) {
+      if (this.isClick === false) {
         this.isClick = !this.isClick
       } else {
         this.isClick = !this.isClick
         // console.log(this.isClick)
       }
+    },
+    handleRadio (index) {
+      this.radio_active = index
+      console.log(this.radio_active)
+    },
+    format_1 (percentage) {
+      return `${percentage}%` + '\n' + '温度'
+    },
+    format_2 (percentage) {
+      return `${percentage}%` + '\n' + '湿度'
+    },
+    format_3 (percentage) {
+      return `${percentage}%` + '\n' + '土壤水分'
+    },
+    format_4 (percentage) {
+      return `${percentage}%` + '\n' + '土壤温度'
     }
   }
 }
 </script>
+<style>
+.el-progress .el-progress__text{
+  white-space: pre-wrap;
+  line-height: 125%;
+}
+</style>
 <style scoped>
 #right{
-  margin-top:0.625em;
+  margin-top:em;
   /* float: left; */
   overflow: hidden;
   width: 60%;
@@ -109,6 +179,41 @@ export default {
   margin-top: 1.875em;
   margin-left: 0.625em;
 }
+._radio{
+  width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color:white;
+  border-style: solid;
+  border-width: .15em;
+  border-color:white;
+  float: left;
+  margin-right: .5em;
+  cursor: pointer;
+}
+._radio_active{
+width: 1em;
+  height: 1em;
+  border-radius: 50%;
+  background-color:white;
+  border-style: solid;
+  border-width: .15em;
+  border-color: #F56C6C;
+  float: left;
+  margin-right: .5em;
+  cursor: pointer;
+}
+._radio:hover ._radio_intent{
+  background-color: #F56C6C;
+}
+._radio_intent{
+  width: .5em;
+  height: .5em;
+  margin: .1em;
+  background-color: #f56c6ca2;
+  border-radius: 50%;
+  float: left;
+}
 .imgss{
   width:100%;
   height:100%;
@@ -133,7 +238,8 @@ export default {
   color: #666666;
 }
 .circle{
-  margin-left: 0.3125em;
+  /* margin-left: 0.3125em; */
+  margin-left: 0.625em;
 }
 #content_text{
   width: 100%;
@@ -146,7 +252,7 @@ export default {
 }
 #content_img{
   width: 100%;
-  height:auto;
+  height:18em;
   /* margin-top: 30px; */
   /* background-color: darkkhaki; */
 }
@@ -160,7 +266,7 @@ export default {
 }
 #img_icon{
   width: 30%;
-  height: 5%;
+  height: 1.5em;
   margin-top: 0.625em;
   margin-left:40%;
   /* background-color: darkcyan; */
@@ -172,11 +278,17 @@ export default {
   margin-top: 0.625em;
   /* background-color: bisque; */
 }
-#video{
+.video{
   width: 100%;
   height: 100%;
   border-radius: 16px;
   /* background-color:#999999; */
+}
+.video_content{
+  width: 100%;
+  height:100%;
+  object-fit:fill;
+  border-radius:16px;
 }
 @media (max-width:1200px) {
   #img_icon{
@@ -195,6 +307,9 @@ export default {
   .img{
     height: 15em;
   }
+  #content_img{
+    height: 33em;
+  }
 }
 @media  (max-width: 999px) {
   #left{
@@ -207,10 +322,16 @@ export default {
     width: 45%;
     height: 13em;
   }
+  #content_img{
+    height: 30em;
+  }
 }
 @media (max-width: 759px){
   .img{
     height: 10em;
+  }
+  #content_img{
+    height: 23em;
   }
 }
 @media (max-width: 490px){
@@ -227,6 +348,9 @@ export default {
   .img{
     width: 45%;
     height: 7.8em;
+  }
+  #content_img{
+    height: 18em;
   }
   #left{
     margin-right:0;
@@ -251,9 +375,6 @@ export default {
   .circle{
     margin-left: 2em;
   }
-  #content_img{
-    height:auto;
-  }
   #img_icon{
     width: 50%;
     margin-left: 35%;
@@ -265,6 +386,9 @@ export default {
     width: 100%;
     height: 12em;
   }
+  #content_img{
+    height: 27em;
+  }
   #img_icon{
     width: 60%;
     margin-left: 20%;
@@ -275,6 +399,9 @@ export default {
   .img{
     width: 12em;
     height: 8em;
+  }
+  #content_img{
+    height: 19em;
   }
 }
 </style>
