@@ -16,10 +16,10 @@
                 trigger="hover"
               >
                 <el-row>
-                  <el-progress type="circle" :percentage="25" width="80" color="#e6a23c" stroke-width="10" />
-                  <el-progress type="circle" :percentage="25" width="80" color="#6f7ad3" stroke-width="10" />
-                  <el-progress type="circle" :percentage="25" width="80" color="#5cb87a" stroke-width="10" />
-                  <el-progress type="circle" :percentage="25" width="80" color="#f56c6c" stroke-width="10" />
+                  <el-progress type="circle" :percentage="25" :width="80" color="#e6a23c" :stroke-width="10" />
+                  <el-progress type="circle" :percentage="25" :width="80" color="#6f7ad3" :stroke-width="10" />
+                  <el-progress type="circle" :percentage="25" :width="80" color="#5cb87a" :stroke-width="10" />
+                  <el-progress type="circle" :percentage="25" :width="80" color="#f56c6c" :stroke-width="10" />
                 </el-row>
                 <p slot="reference">
                   {{ card.name }}
