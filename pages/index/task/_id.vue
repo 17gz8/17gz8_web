@@ -92,10 +92,10 @@
       <el-col :span="24">
         <div class="task-info">
           <div v-for="(card,index) in task.cards" :key="index" class="card-box">
-            <el-card body-style="overflow:visible">
+            <el-card body-style="overflow:visible; padding:0px;" class="card-box-el">
               <div class="task-info-box">
                 <div class="card-img">
-                  <el-image :src="card.taskImg" style="width: 160px; height: 160px" />
+                  <el-image :src="card.taskImg" style="width: 100%; height: 100%;" fit="cover" />
                 </div>
                 <div class="task-status-img">
                   <img :src="taskStatusImg(card.status)" alt="">
@@ -272,8 +272,8 @@ export default {
 
   .task-status-img{
     position: absolute;
-    right: -20px;
-    top:-20px;
+    right: -15px;
+    top:-15px;
     z-index:11;
   }
 
@@ -430,10 +430,7 @@ export default {
 
   .task-head-video{
     position: relative;
-    /* width: 1200px; */
-    /* flex-shrink: 0; */
-    /* flex:1; */
-    flex-grow: 1;
+    width: 1200px;
     margin-left: 100px;
   }
 
@@ -446,13 +443,22 @@ export default {
   .task-head{
     display: flex;
     width: 100%;
-    flex-wrap: wrap;
+    /* flex-wrap: wrap; */
+  }
+
+  .card-box-el{
+    overflow: visible;
   }
 
   .task-head-info{
     width:432px;
     /* flex:1; */
     flex-shrink: 0;
+  }
+
+  .card-img{
+    width:160px;
+    height: 160px;
   }
 
   .task-head-option{
@@ -480,36 +486,12 @@ export default {
       width: 33%;
     }
   }
-  @media screen and (max-width:1410px){
-    .card-box{
-      width: 33%;
-    }
-  }
 
   @media screen and (max-width:1288px){
     .card-box{
       width: 50%;
     }
-    .task-info-box{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
   }
-  @media screen and (max-width: 930px){
-    /* .task-info-box{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    } */
-  }
-
-  /* @media screen and (max-width: 850px){
-    .card-box{
-      width: 40%;
-    }
-  } */
 
   @media screen and (max-width:900px){
     .task-title{
@@ -558,9 +540,30 @@ export default {
       margin-left: 0px;
     }
   }
+
+  @media screen and (max-width: 714px){
+
+    .task-info-box{
+      justify-content: center;
+      align-items: center;
+    }
+  }
   @media screen and (max-width: 520px){
     .card-box{
       width: 100%;
+      padding: 15px;
+    }
+
+    .task-info{
+      flex-wrap: nowrap;
+      overflow:scroll;
+    }
+
+    .card-box{
+      flex:none;
+    }
+    .task-info-box{
+      justify-content: flex-start;
     }
   }
   @media screen and (max-width: 459px){
@@ -580,19 +583,11 @@ export default {
     }
   }
 
-  @media screen and (max-width: 430px){
-    .task-info-box{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-
   @media screen and (max-width: 404px){
     .task-history,.task-same{
       font-size:30px;
     }
+
   }
   /* 底部的布局 */
 
