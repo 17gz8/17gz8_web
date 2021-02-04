@@ -3,16 +3,25 @@
     <div class="task-head">
       <div class="task-head-info">
         <el-card class="box-card">
-          <div slot="header" class="clearfix">
+          <div slot="header" class="box-card-title">
             <span class="task-title">播种豌豆</span>
-            <span>发起中</span>
+            <div class="box-card-img">
+              <img :src="taskStatusImg(task.taskStatus)" alt="">
+            </div>
           </div>
           <div class="task-head-option">
             <span class="task-position">希望小村菜地</span>
             <div class="task-head-status">
-              <el-button type="danger" class="task-head-button">
-                加入任务
-              </el-button>
+              <template v-if="!(task.isJoined)">
+                <el-button type="danger" class="task-head-button" @click="handleTaskStatus">
+                  加入任务
+                </el-button>
+              </template>
+              <template v-else>
+                <el-button type="text" class="task-head-button" :disabled="true" @click="handleTaskStatus">
+                  你已加入
+                </el-button>
+              </template>
             </div>
           </div>
         </el-card>
@@ -72,55 +81,9 @@
         <time-axis />
       </el-col>
     </el-row>
-    <el-row>
-      <el-col :span="24">
-        <div class="timeline-info">
-          <el-tabs type="border-card">
-            <el-tab-pane>
-              <span slot="label">
-                <el-popover
-                  placement="right"
-                  width="400"
-                  trigger="click"
-                >
-                  <el-table>
-                    <el-table-column width="150" property="date" label="日期" />
-                    <el-table-column width="100" property="name" label="姓名" />
-                    <el-table-column width="300" property="address" label="地址" />
-                  </el-table>
-                  <div slot="reference">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" :size="40" />
-                  </div>
-                </el-popover>
-              </span>
-              我的行程
-            </el-tab-pane>
-            <el-tab-pane>
-              <span slot="label">
-                <el-popover
-                  placement="right"
-                  width="400"
-                  trigger="click"
-                >
-                  <el-table>
-                    <el-table-column width="150" property="date" label="日期" />
-                    <el-table-column width="100" property="name" label="姓名" />
-                    <el-table-column width="300" property="address" label="地址" />
-                  </el-table>
-                  <div slot="reference">
-                    <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" />
-                  </div>
-                </el-popover>
-              </span>
-              我的行程
-            </el-tab-pane>
-          </el-tabs>
-        </div>
-      </el-col>
-    </el-row>
     <el-row class="task-footer">
       <el-col :span="24">
-        <div>
+        <div class="task-footer-container">
           <span v-for="(item,index) in taskCategory" :key="item" :class="[index === 0 ? 'task-same' : '', index === 1 ? 'task-history' : '', currentIndex === index? 'active' : '']" @click="isClick(index)">{{ item }}</span>
         </div>
       </el-col>
@@ -129,10 +92,13 @@
       <el-col :span="24">
         <div class="task-info">
           <div v-for="(card,index) in task.cards" :key="index" class="card-box">
-            <el-card>
+            <el-card body-style="overflow:visible; padding:0px;" class="card-box-el">
               <div class="task-info-box">
                 <div class="card-img">
-                  <el-image :src="card.taskImg" style="width: 160px; height: 160px" />
+                  <el-image :src="card.taskImg" style="width: 100%; height: 100%;" fit="cover" />
+                </div>
+                <div class="task-status-img">
+                  <img :src="taskStatusImg(card.status)" alt="">
                 </div>
                 <div class="card-right">
                   <h2 class="task-info-title">
@@ -161,15 +127,15 @@
 </template>
 
 <script>
-import TimeAxis from '../../../components/TimeAxis.vue'
 export default {
-  components: { TimeAxis },
   data () {
     return {
       currentIndex: 0,
       task: {
         title: '播种豌豆',
         position: '希望小村菜地',
+        taskStatus: 'toDo', // toDo:发起中 doing:实验中 Done:已完成
+        isJoined: false, // 是否加入任务
         videoSrc: 'https://video.pearvideo.com/mp4/adshort/20210202/cont-1718954-15596002_adpkg-ad_hd.mp4',
         // 简介
         profile: {
@@ -185,15 +151,31 @@ export default {
         },
         gardenId: 1,
         members: [{ src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }],
-        cards: [{ taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }]
+        cards: [{ taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学', status: 'toDo' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学', status: 'toDo' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学', status: 'toDo' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学', status: 'toDo' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学', status: 'Done' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学', status: 'doing' }]
 
       },
       taskCategory: ['同类任务', '菜地历史']
     }
   },
+  computed: {
+    taskStatusImg (status) {
+      return function (i) {
+        if (i === 'toDo') {
+          return require('@/assets/images/发起中.png')
+        } else if (i === 'doing') {
+          return require('@/assets/images/实验中.png')
+        } else {
+          return require('@/assets/images/已完成.png')
+        }
+      }
+    }
+  },
   methods: {
     isClick (index) {
       this.currentIndex = index
+    },
+    handleTaskStatus () {
+      this.task.isJoined = !this.task.isJoined
     }
   }
 }
@@ -240,6 +222,13 @@ export default {
 
   .box-card {
     width: 100%;
+    position: relative;
+  }
+
+  .box-card-title{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .person-info{
@@ -278,6 +267,14 @@ export default {
     display: flex;
     width: 100%;
     flex-wrap: wrap;
+    position: relative;
+  }
+
+  .task-status-img{
+    position: absolute;
+    right: -15px;
+    top:-15px;
+    z-index:11;
   }
 
   .task-footer{
@@ -434,7 +431,6 @@ export default {
   .task-head-video{
     position: relative;
     width: 1200px;
-    flex-shrink: 0;
     margin-left: 100px;
   }
 
@@ -450,10 +446,19 @@ export default {
     /* flex-wrap: wrap; */
   }
 
+  .card-box-el{
+    overflow: visible;
+  }
+
   .task-head-info{
     width:432px;
     /* flex:1; */
     flex-shrink: 0;
+  }
+
+  .card-img{
+    width:160px;
+    height: 160px;
   }
 
   .task-head-option{
@@ -464,11 +469,12 @@ export default {
 
   .video-container{
     width: 100%;
-    /* margin-left:83px; */
-    /* border-radius:5%; */
-    /* height: 900px; */
     margin-top:10px;
     box-shadow: 0px 0px 3px 3px rgba(168, 168, 168, 0.5);
+  }
+  .task-footer-container{
+    font-size:48px;
+    white-space: nowrap;
   }
   @media screen and (min-width:1702px){
     .card-box{
@@ -480,37 +486,14 @@ export default {
       width: 33%;
     }
   }
-  @media screen and (max-width:1410px){
-    .card-box{
-      width: 33%;
-    }
-  }
 
   @media screen and (max-width:1288px){
     .card-box{
       width: 50%;
     }
-    .task-info-box{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-  }
-  @media screen and (max-width: 930px){
-    /* .task-info-box{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-    } */
   }
 
-  /* @media screen and (max-width: 850px){
-    .card-box{
-      width: 40%;
-    }
-  } */
-  @media screen and (max-width: 700px) {
+  @media screen and (max-width:900px){
     .task-title{
       display: inline-block;
       width: 100%;
@@ -527,6 +510,17 @@ export default {
     .task-head-video{
       width: 100%;
       margin-left:0;
+      /* flex-shrink: 0; */
+    }
+
+    .person-info{
+      justify-content: center;
+    }
+
+    .task-startTime{
+      display: inline-block;
+      width: 100%;
+      text-align: center;
     }
 
     .video-container{
@@ -546,9 +540,30 @@ export default {
       margin-left: 0px;
     }
   }
+
+  @media screen and (max-width: 714px){
+
+    .task-info-box{
+      justify-content: center;
+      align-items: center;
+    }
+  }
   @media screen and (max-width: 520px){
     .card-box{
       width: 100%;
+      padding: 15px;
+    }
+
+    .task-info{
+      flex-wrap: nowrap;
+      overflow:scroll;
+    }
+
+    .card-box{
+      flex:none;
+    }
+    .task-info-box{
+      justify-content: flex-start;
     }
   }
   @media screen and (max-width: 459px){
@@ -568,13 +583,11 @@ export default {
     }
   }
 
-  @media screen and (max-width: 430px){
-    .task-info-box{
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
+  @media screen and (max-width: 404px){
+    .task-history,.task-same{
+      font-size:30px;
     }
+
   }
   /* 底部的布局 */
 

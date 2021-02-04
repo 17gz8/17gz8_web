@@ -121,7 +121,7 @@ export default {
     showdifference (index) {
       this.isActive = index
       // eslint-disable-next-line no-console
-      console.log(this.isActive)
+      // console.log(this.isActive)
       if (this.isClick === false) {
         this.isClick = !this.isClick
       } else {
@@ -153,6 +153,10 @@ export default {
 .el-progress .el-progress__text{
   white-space: pre-wrap;
   line-height: 125%;
+}
+.el-progress{
+  width: 40;
+  stroke-width:20;
 }
 </style>
 <style scoped>
