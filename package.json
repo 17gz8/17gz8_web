@@ -25,6 +25,10 @@
     "pages/**/*.{js,vue}": [
       "eslint --fix",
       "git add"
+    ],
+    "components/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
     ]
   },
   "dependencies": {

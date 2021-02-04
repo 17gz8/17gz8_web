@@ -1,8 +1,8 @@
  cd 17gz8_web<template>
   <div class="block">
-    <span class="demonstration">默认 Hover 指示器触发</span>
+    <span class="demonstration">.</span>
     <el-carousel height="450px">
-      <el-carousel-item v-for="item in pictures" :key="item">
+      <el-carousel-item v-for="item in pictures" :key="item.id">
         <el-image
           style="width: 100%; height: 100%"
           :src="item.url"
@@ -28,10 +28,10 @@ export default {
   data () {
     return {
       pictures: [
-        { url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
-        { url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
-        { url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
-        { url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' }
+        { id: 1, url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
+        { id: 2, url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
+        { id: 3, url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' },
+        { id: 4, url: 'https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg' }
       ],
       gardens: [
         { text: '体验种植、热爱劳动、热爱生活', url: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fp1.img.cctvpic.com%2Fphotoworkspace%2Fcontentimg%2F2014%2F05%2F03%2F2014050314265431837.jpg&refer=http%3A%2F%2Fp1.img.cctvpic.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=jpeg?sec=1614873324&t=28fa51217df1be933cb03c81cf9fc605' },
