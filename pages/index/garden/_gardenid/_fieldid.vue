@@ -50,7 +50,7 @@
           <span class="circle">
             <el-progress
               type="circle"
-              :percentage="30"
+              :percentage="35"
               :width="80"
               :stroke-width="12"
               color="#F56C6C"
