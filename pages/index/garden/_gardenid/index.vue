@@ -1,7 +1,15 @@
 <template>
   <div class="container">
     <div class="warp">
-      <h3><span> 菜园{{ gardenid }}</span></h3>
+      <h3><span class="span-s"> 菜园{{ gardenid }}</span></h3>
+      <div class="address-d">
+        <img :src="imgS.picS" alt="addresss" class="address-img">
+        <br>
+        <p class="address-p">
+          {{ address }}
+        </p>
+      </div>
+      <br>
       <div class="intro">
         <p>{{ data1 }}</p>
         <p>{{ data2 }}</p>
@@ -76,6 +84,7 @@ export default {
       data1: '希望小村菜地距离重庆市中心约有五十公里，占地面积5000亩（主体参观区400亩）。',
       data2: '是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地',
       gardenid: '',
+      address: '重庆市巴南区×××',
       fields: [[
         { id: '1', name: '1号菜地' },
         { id: '2', name: '2号菜地' },
@@ -113,6 +122,9 @@ export default {
       ],
       videoS: {
         videoSrc: 'https://video.pearvideo.com/mp4/adshort/20210202/cont-1718954-15596002_adpkg-ad_hd.mp4'
+      },
+      imgS: {
+        picS: require('@/assets/images/location.png')
       }
     }
   },
@@ -129,15 +141,36 @@ export default {
   margin-top: 2%;
   margin-bottom: 2%;
 }
+.address-d{
+  display: block;
+}
+.address-img{
+  margin-top: 0.8%;
+  width: 2.3%;
+  height: 2.3%;
+  float: left;
+}
+/* .address-p{
+  float: left;
+  margin-top: 3%;
+} */
 .warp{
-  background-color:lightgray;
+  /* background-color:lightgray; */
   min-height:300px;
-  margin: 1%;
+  margin: 3%;
+  /* display: block; */
 }
 h3 span{
   padding: 2px 10px;
   border-left: 5px solid rgb(233, 18, 72);
   font-size: 35px;
+  /* float: left; */
+}
+.span-s{
+  padding: 2px 10px;
+  border-left: 5px solid rgb(233, 18, 72);
+  font-size: 35px;
+  float: left;
 }
 .cardTask{
   margin: 0,auto;
