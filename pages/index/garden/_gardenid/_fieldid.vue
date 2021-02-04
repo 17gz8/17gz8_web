@@ -131,7 +131,7 @@ export default {
     },
     handleRadio (index) {
       this.radio_active = index
-      console.log(this.radio_active)
+      // console.log(this.radio_active)
       this.imgs = this.Imgss[index].url
     },
     format_1 (percentage) {
