@@ -8,25 +8,27 @@
       </div>
       <el-carousel indicator-position="outside">
         <el-carousel-item v-for="(item,index) in fields" :key="index">
-          <el-card v-for="(card,index1) in item" :key="index1">
-            <nuxt-link :to="`/garden/${gardenid}/${card.id}`">
-              <el-popover
-                placement="top-start"
-                title="菜地数据"
-                trigger="hover"
-              >
-                <el-row>
-                  <el-progress type="circle" :percentage="25" width="80" color="#e6a23c" stroke-width="10" />
-                  <el-progress type="circle" :percentage="25" width="80" color="#6f7ad3" stroke-width="10" />
-                  <el-progress type="circle" :percentage="25" width="80" color="#5cb87a" stroke-width="10" />
-                  <el-progress type="circle" :percentage="25" width="80" color="#f56c6c" stroke-width="10" />
-                </el-row>
-                <p slot="reference">
-                  {{ card.name }}
-                </p>
-              </el-popover>
-            </nuxt-link>
-            <video-player class="video-container" />
+          <el-card v-for="(card,index1) in item" :key="index1" class="card-group">
+            <div class="card-link">
+              <nuxt-link :to="`/garden/${gardenid}/${card.id}`">
+                <el-popover
+                  placement="top-start"
+                  title="菜地数据"
+                  trigger="hover"
+                >
+                  <el-row>
+                    <el-progress type="circle" :percentage="25" :width="80" color="#e6a23c" :stroke-width="10" />
+                    <el-progress type="circle" :percentage="25" :width="80" color="#6f7ad3" :stroke-width="10" />
+                    <el-progress type="circle" :percentage="25" :width="80" color="#5cb87a" :stroke-width="10" />
+                    <el-progress type="circle" :percentage="25" :width="80" color="#f56c6c" :stroke-width="10" />
+                  </el-row>
+                  <p slot="reference">
+                    {{ card.name }}
+                  </p>
+                </el-popover>
+              </nuxt-link>
+            </div>
+            <video-player :src="videoS.videoSrc" class="video-container" />
           </el-card>
         </el-carousel-item>
       </el-carousel>
@@ -75,24 +77,24 @@ export default {
       data2: '是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地',
       gardenid: '',
       fields: [[
-        { id: '1', name: '菜地1' },
-        { id: '2', name: '菜地2' },
-        { id: '3', name: '菜地3' }
+        { id: '1', name: '1号菜地' },
+        { id: '2', name: '2号菜地' },
+        { id: '3', name: '3号菜地' }
       ],
       [
-        { id: '4', name: '菜地4' },
-        { id: '5', name: '菜地5' },
-        { id: '6', name: '菜地6' }
+        { id: '4', name: '4号菜地' },
+        { id: '5', name: '5号菜地' },
+        { id: '6', name: '6号菜地' }
       ],
       [
-        { id: '7', name: '菜地7' },
-        { id: '8', name: '菜地8' },
-        { id: '9', name: '菜地9' }
+        { id: '7', name: '7号菜地' },
+        { id: '8', name: '8号菜地' },
+        { id: '9', name: '9号菜地' }
       ],
       [
-        { id: '10', name: '菜地10' },
-        { id: '11', name: '菜地11' },
-        { id: '12', name: '菜地12' }
+        { id: '10', name: '10号菜地' },
+        { id: '11', name: '11号菜地' },
+        { id: '12', name: '12号菜地' }
       ]
       ],
       task: [
@@ -108,7 +110,10 @@ export default {
           { type: '西瓜种植', school: '重庆重点小学', teacher: '马老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') },
           { type: '土豆种植', school: '新华中学', teacher: '钱老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') }
         ]
-      ]
+      ],
+      videoS: {
+        videoSrc: 'https://video.pearvideo.com/mp4/adshort/20210202/cont-1718954-15596002_adpkg-ad_hd.mp4'
+      }
     }
   },
   created () {
@@ -139,11 +144,28 @@ h3 span{
   margin-top: 20px;
 
 }
-  .video-container{
-    width: 100%;
-    margin-top:10px;
-    box-shadow: 0px 0px 3px 3px rgba(168, 168, 168, 0.5);
-  }
+.card-group{
+  position: relative;
+}
+.card-link{
+  position: absolute;
+  z-index: 10;
+  background: rgb(248, 246, 246);
+  opacity: 70%;
+  left: 78%;
+  top: 10%;
+  border-radius: 20px;
+  height: fit-content;
+}
+.card-link p{
+  font-size: 35%;
+}
+.video-container{
+  width: 100%;
+  /* margin-top:10px; */
+  position: relative;
+  /* box-shadow: 0px 0px 3px 3px rgba(168, 168, 168, 0.5); */
+}
 .el-card{
   width: 31%;
   margin: 1%;

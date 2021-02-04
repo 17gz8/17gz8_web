@@ -31,8 +31,8 @@
             <el-progress
               type="circle"
               :percentage="25"
-              width="80"
-              stroke-width="12"
+              :width="80"
+              :stroke-width="12"
               color="#E6A23C"
               :format="format_1"
             />
@@ -41,8 +41,8 @@
             <el-progress
               type="circle"
               :percentage="45"
-              width="80"
-              stroke-width="12"
+              :width="80"
+              :stroke-width="12"
               color="#409EFF"
               :format="format_2"
             />
@@ -51,8 +51,8 @@
             <el-progress
               type="circle"
               :percentage="30"
-              width="80"
-              stroke-width="12"
+              :width="80"
+              :stroke-width="12"
               color="#F56C6C"
               :format="format_3"
             />
@@ -61,8 +61,8 @@
             <el-progress
               type="circle"
               :percentage="70"
-              width="80"
-              stroke-width="12"
+              :width="80"
+              :stroke-width="12"
               color="#67C23A"
               :format="format_4"
             />
@@ -131,7 +131,7 @@ export default {
     },
     handleRadio (index) {
       this.radio_active = index
-      console.log(this.radio_active)
+      // console.log(this.radio_active)
       this.imgs = this.Imgss[index].url
     },
     format_1 (percentage) {
