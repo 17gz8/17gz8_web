@@ -25,12 +25,17 @@
     "pages/**/*.{js,vue}": [
       "eslint --fix",
       "git add"
+    ],
+    "components/**/*.{js,vue}": [
+      "eslint --fix",
+      "git add"
     ]
   },
   "dependencies": {
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
-    "nuxt": "^2.14.6"
+    "nuxt": "^2.14.6",
+    "video.js": "^7.10.2"
   },
   "devDependencies": {
     "@commitlint/cli": "^11.0.0",
