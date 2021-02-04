@@ -770,7 +770,7 @@ export default {
 }
 
 .center_down .members {
-  padding-right: 2px;
+  padding-right: 8px;
   position: relative;
   /* background-color: lightgreen; */
   height: 50px;

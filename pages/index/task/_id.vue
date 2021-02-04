@@ -55,7 +55,7 @@
         <el-tag type="info">
           {{ task.gardenId }}号菜地
         </el-tag>
-        <video-player class="video-container" />
+        <video-player :src="task.videoSrc" class="video-container" />
       </div>
     </div>
     <el-row>
@@ -65,6 +65,11 @@
             任务时间轴
           </h2>
         </div>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col>
+        <time-axis />
       </el-col>
     </el-row>
     <el-row>
@@ -97,7 +102,7 @@
                   width="400"
                   trigger="click"
                 >
-                  <el-table :data="gridData">
+                  <el-table>
                     <el-table-column width="150" property="date" label="日期" />
                     <el-table-column width="100" property="name" label="姓名" />
                     <el-table-column width="300" property="address" label="地址" />
@@ -156,13 +161,16 @@
 </template>
 
 <script>
+import TimeAxis from '../../../components/TimeAxis.vue'
 export default {
+  components: { TimeAxis },
   data () {
     return {
       currentIndex: 0,
       task: {
         title: '播种豌豆',
         position: '希望小村菜地',
+        videoSrc: 'https://video.pearvideo.com/mp4/adshort/20210202/cont-1718954-15596002_adpkg-ad_hd.mp4',
         // 简介
         profile: {
           avatarSrc: 'https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png',
@@ -178,6 +186,7 @@ export default {
         gardenId: 1,
         members: [{ src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }, { src: 'https://fuss10.elemecdn.com/a/3f/3302e58f9a181d2509f3dc0fa68b0jpeg.jpeg', name: '高老师' }],
         cards: [{ taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }, { taskImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', title: '玫瑰花种植', avatarImg: 'https://fuss10.elemecdn.com/1/34/19aa98b1fcb2781c4fba33d850549jpeg.jpeg', name: '刘老师', position: '新华小学' }]
+
       },
       taskCategory: ['同类任务', '菜地历史']
     }
