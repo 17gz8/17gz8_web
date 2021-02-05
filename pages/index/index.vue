@@ -1,6 +1,5 @@
- cd 17gz8_web<template>
+<template>
   <div class="block">
-    <span class="demonstration">.</span>
     <el-carousel height="450px">
       <el-carousel-item v-for="item in pictures" :key="item.id">
         <el-image
@@ -59,6 +58,10 @@ export default {
   opacity: 0.75;
   line-height: 300px;
   margin: 0;
+}
+
+.el-carousel{
+  width:100%;
 }
 .el-card{
   width: 98%;
