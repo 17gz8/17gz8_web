@@ -1,7 +1,7 @@
  cd 17gz8_web<template>
   <div class="block">
     <span class="demonstration">.</span>
-    <el-carousel height="450px">
+    <el-carousel>
       <el-carousel-item v-for="item in pictures" :key="item.id">
         <el-image
           style="width: 100%; height: 100%"
