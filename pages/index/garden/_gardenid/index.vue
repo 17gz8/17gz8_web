@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="warp">
+    <div id="one" class="warp">
       <h3><span class="span-s"> 菜园{{ gardenid }}</span></h3>
       <div class="address-d">
         <img :src="imgS.picS" alt="addresss" class="address-img">
@@ -146,8 +146,8 @@ export default {
 }
 .address-img{
   margin-top: 0.8%;
-  width: 2.3%;
-  height: 2.3%;
+  width: 1.5%;
+  height: 1.5%;
   float: left;
 }
 /* .address-p{
@@ -183,15 +183,17 @@ h3 span{
 .card-link{
   position: absolute;
   z-index: 10;
-  background: rgb(248, 246, 246);
   opacity: 70%;
-  left: 78%;
-  top: 10%;
-  border-radius: 20px;
-  height: fit-content;
+  left: 80%;
+  top: -10%;
+  height: 60%;
+  text-align:center;
 }
 .card-link p{
-  font-size: 35%;
+  width: 140%;
+  font-size: 80%;
+  background: rgb(248, 246, 246);
+  border-radius: 10px;
 }
 .video-container{
   width: 100%;
@@ -211,10 +213,11 @@ h3 span{
   display: flex;
   justify-content:space-around;
 }
-.gardenTask{
-  margin-left: 11%;
-  width:33%;
-}
+  .gardenTask{
+    margin-left: 11%;
+    width:33%;
+  }
+
 .shu{
   border-left: 2px solid rgb(233, 18, 72);
   height: 25px;
@@ -227,5 +230,96 @@ h3 span{
 }
 .kong2{
   height: 27%;
+}
+@media screen and (max-width:1600px){
+  .card-link p{
+  width: 110%;
+}
+  .card-link{
+  top: -10%;
+}
+  .address-img{
+    width: 3%;
+    height: 3%;
+  }
+}
+@media screen and (max-width:1300px){
+    .card-link p{
+  width: 100%;
+}
+  .gardenTask{
+    margin-left: 11%;
+    width:33%;
+    height: auto;
+  }
+    .address-img{
+    margin-top: 1%;
+    width: 4%;
+    height: 4%;
+  }
+}
+@media screen and (max-width:1000px){
+  .card-link{
+  left: 76%;
+  top: -10%;
+}
+    .address-p{
+    margin-top: 1.2%;
+  }
+  .gardenTask{
+    margin-left: 11%;
+    width:65%;
+    height: auto;
+  }
+    .address-img{
+    margin-top: 3%;
+    width: 5%;
+    height: 5%;
+  }
+}
+@media screen and (max-width:800px){
+  .address-p{
+    margin-top: 2%;
+  }
+  .gardenTask{
+    margin-left: 11%;
+    width:70%;
+    height: auto;
+  }
+    .address-img{
+    margin-top: 3%;
+    width: 4%;
+    height: 4%;
+  }
+}
+@media screen and (max-width:600px){
+  #one{
+    margin-top: 37px;
+  }
+  .address-p{
+    margin-top: 0.8%;
+  }
+  .address-img{
+    margin-top: 3%;
+    width: 8%;
+    height: 8%;
+  }
+  .card-link{
+  left: 78%;
+  top: 10%;
+}
+  .card-link p{
+    width: 60%;
+    font-size: 2px;
+  }
+    .gardenTask{
+      margin-left: 11%;
+      width:80%;
+      height: auto;
+    }
+  .card-group{
+    width: 48%;
+    height: auto;
+}
 }
 </style>
