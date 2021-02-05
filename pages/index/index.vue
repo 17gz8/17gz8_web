@@ -1,6 +1,6 @@
  cd 17gz8_web<template>
   <div class="block">
-    <span class="demonstration">.</span>
+    <span class="demonstration" />
     <el-carousel height="450px">
       <el-carousel-item v-for="item in pictures" :key="item.id">
         <el-image
@@ -46,6 +46,13 @@ export default {
 </script>
 
 <style scoped>
+::-webkit-scrollbar{
+  width: 0 !important;
+}
+::-webkit-scrollbar{
+  width: 0 !important;
+  height: 0;
+}
 .el-carousel__item h3 {
   color: #475669;
   font-size: 14px;
@@ -54,8 +61,7 @@ export default {
   margin: 0;
 }
 .el-card{
-  width: 100%;
-  height: 600px;
+  width: 98%;
   margin: 1%;
   float:left;
 

@@ -4,7 +4,7 @@
       <nuxt-link :to="`/garden/${item.id}`">
         <div class="left">
           <el-container>
-            <el-aside width="50%" style="overflow: hidden">
+            <el-aside width="100%" style="overflow: hidden">
               <el-image
                 style="width: 100%; height: 100%"
                 :src="item.url"
@@ -95,6 +95,7 @@ export default {
  }
  .el-card .el-container {
    width: 100%;
+   flex-direction: column;
  }
  .el-card .el-container .el-header, .el-footer {
     width: 100%;
@@ -104,11 +105,10 @@ export default {
     line-height: 60px;
   }
  .el-aside {
-    width: 10%;
     background-color: #D3DCE6;
     color: #333;
     text-align: left;
-    line-height: 200px;
+    line-height: 0px;
   }
   .el-card .el-container .el-main {
     width: 100%;
