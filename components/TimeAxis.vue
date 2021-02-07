@@ -26,11 +26,11 @@
     </div>
     <!-- 2.数据 -->
     <div class="time-axis-info">
-      <el-card v-for="(item, index2) in arr" v-show="imgActiveIndex === index2" :key="index2" class="items_card">
+      <el-card v-if="imgActiveIndex !== -1" class="items_card">
         <!-- 1.上方介绍 -->
         <el-row class="item_top">
-          <el-col :xs="24" :sm="16" class="item_top_left">
-            <span>{{ item.title }}</span>
+          <el-col :xs="24" :sm="15" class="item_top_left">
+            <span>{{ arr[imgActiveIndex].title }}</span>
             <div class="item_top_left_comment">
               <div class="comment" style="margin-right:10px">
                 <img style="height:20px;width:20px" src="../assets/taskImg/pinglun.png">
@@ -43,23 +43,30 @@
             </div>
           </el-col>
           <el-col :xs="24" :sm="8" class="item_top_right">
-            <div v-for="(imgList, index) in item.imgArr" :key="index">
+            <div v-for="(imgList, index) in arr[imgActiveIndex].imgArr" :key="index">
               <el-image :src="imgList.img" />
+            </div>
+          </el-col>
+          <el-col :xs="24" :sm="1" class="item_top_dot">
+            <div class="tempContainer">
+              <div v-for="index in 4" :key="index" class="dotItem" :class="{ dotActive : dotActiveIndex === index}" @click="dotClick(index)" />
             </div>
           </el-col>
         </el-row>
         <!-- 2.下方评论 -->
-        <h3>评论</h3>
+        <h3 style="margin-top: 2%">
+          评论
+        </h3>
         <el-row v-for="index in 3" :key="index" class="item_bootom">
           <el-col :span="8">
             <div class="user" style="display: flex">
-              <el-avatar :src="item.bcgImg" :size="50" />
+              <el-avatar :src="arr[imgActiveIndex].bcgImg" :size="50" />
               <div class="info" style="margin-left:30px;margin-top:7px">
                 <p>李老师</p>
                 <p>30分钟前</p>
               </div>
             </div>
-            <div class="comment" style="text-align: center;margin-top:7px">
+            <div class="comment" style="margin-top:7px;margin-left:82px">
               <span>口感会有一点变化</span>
             </div>
           </el-col>
@@ -191,7 +198,8 @@ export default {
         }
       ],
       imgActiveIndex: -1,
-      isChoose: false
+      isChoose: false,
+      dotActiveIndex: 1
     }
   },
   methods: {
@@ -201,8 +209,12 @@ export default {
         this.isChoose = false
       } else {
         this.imgActiveIndex = index
+        // alert(this.imgActiveIndex)
         this.isChoose = true
       }
+    },
+    dotClick (index) {
+      this.dotActiveIndex = index
     }
   }
 }
@@ -272,10 +284,10 @@ export default {
     position: absolute;
     display: flex;
     bottom: 8%;
-    right: 34%;
+    right: 38%;
   }
   .items_card .item_top .item_top_right {
-    height: 100%;
+    height: 100% ;
     margin-bottom: 20px;
     /* background-color: hotpink; */
   }
@@ -283,6 +295,21 @@ export default {
     float: left;
     width: 50%;
     padding: 2%;
+  }
+  .items_card .item_top .item_top_dot {
+    position: absolute;
+    right: 0;
+    top: calc(50% - 45px);
+  }
+  .items_card .item_top .item_top_dot .dotItem{
+    width: 10px;
+    height: 10px;
+    background-color: orange;
+    margin: 10px auto;
+    border-radius: 999px;
+  }
+  .dotActive {
+    background-color: red !important;
   }
   .items_card .item_bootom .el-col {
     width: 56%;
@@ -293,10 +320,11 @@ export default {
   }
   .items_card .bootomInput {
     position: absolute;
-    bottom: 0;
-    left: 25%;
+    width: 80%;
+    bottom: 1%;
+    left: 20%;
   }
-  @media screen and (max-width: 700px){
+  @media screen and (max-width: 763px){
     .items_card {
       width: 100%;
       height: 900px;
@@ -310,8 +338,23 @@ export default {
       bottom: 0;
       right: 0;
     }
+    .items_card .item_top .item_top_dot {
+      position: static;
+    }
+    .items_card .item_top .item_top_dot .tempContainer {
+      position: absolute;
+      bottom: 0;
+      left:calc(50% - 60px);
+    }
+    .items_card .item_top .item_top_dot .dotItem{
+      float: left;
+      margin: 10px;
+    }
     .items_card .bootomInput {
-    left: 10%;
-  }
+      left: 15%;
+    }
+    .items_card .item_bootom .el-col {
+      width: 100%;
+    }
   }
 </style>
