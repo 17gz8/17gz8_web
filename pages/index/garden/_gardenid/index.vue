@@ -23,12 +23,44 @@
                   placement="top-start"
                   title="菜地数据"
                   trigger="hover"
+                  class="card-link-data"
                 >
+                  <div class="card-link-detail">
+                    <p>数据详情</p>
+                  </div>
                   <el-row>
-                    <el-progress type="circle" :percentage="25" :width="80" color="#e6a23c" :stroke-width="10" />
-                    <el-progress type="circle" :percentage="25" :width="80" color="#6f7ad3" :stroke-width="10" />
-                    <el-progress type="circle" :percentage="25" :width="80" color="#5cb87a" :stroke-width="10" />
-                    <el-progress type="circle" :percentage="25" :width="80" color="#f56c6c" :stroke-width="10" />
+                    <el-progress
+                      type="circle"
+                      :percentage="20.8"
+                      :width="80"
+                      color="#e6a23c"
+                      :stroke-width="10"
+                      :format="format1"
+                    />
+                    <el-progress
+                      type="circle"
+                      :percentage="50"
+                      :width="80"
+                      color="#6f7ad3"
+                      :stroke-width="10"
+                      :format="format2"
+                    />
+                    <el-progress
+                      type="circle"
+                      :percentage="23"
+                      :width="80"
+                      color="#f56c6c"
+                      :stroke-width="10"
+                      :format="format3"
+                    />
+                    <el-progress
+                      type="circle"
+                      :percentage="27.6"
+                      :width="80"
+                      color="#5cb87a"
+                      :stroke-width="10"
+                      :format="format4"
+                    />
                   </el-row>
                   <p slot="reference">
                     {{ card.name }}
@@ -50,12 +82,15 @@
               <div class="img">
                 <el-avatar :size="60" :src="item5.pic" />
               </div>
-              <div class="text">
-                <span>{{ item5.type }}</span>
-                <p>{{ item5.school }}{{ item5.teacher }}</p>
+              <div>
+                <span class="task-type">{{ item5.type }}</span>
+                <p>
+                  <span class="task-school">{{ item5.school }}</span>
+                  <span class="task-teacher">{{ item5.teacher }}</span>
+                </p>
               </div>
               <div class="img2">
-                <img :src="item5.pic2" alt="完成">
+                <img :src="taskStatusImg(item5.status)" alt="">
               </div>
               <div>
                 <div class="kong" />
@@ -85,6 +120,7 @@ export default {
       data2: '是国家4A级旅游景区、全国农业旅游示范点、上海市科普教育基地',
       gardenid: '',
       address: '重庆市巴南区×××',
+      taskStatus: 'toDo',
       fields: [[
         { id: '1', name: '1号菜地' },
         { id: '2', name: '2号菜地' },
@@ -108,16 +144,16 @@ export default {
       ],
       task: [
         [
-          { type: '南瓜种植', school: '希望小学', teacher: '赵老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') },
-          { type: '果树培养', school: '哥谭小学', teacher: '赵老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') }
+          { type: '南瓜种植', school: '希望小学', teacher: '赵老师', pic: require('@/assets/images/task1.jpg'), status: 'toDo' },
+          { type: '果树培养', school: '哥谭小学', teacher: '赵老师', pic: require('@/assets/images/task1.jpg'), status: 'toDo' }
         ],
         [
-          { type: '葡萄种植', school: '勤奋中学', teacher: '刘老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') },
-          { type: '鲜花种植', school: '获得转小学', teacher: '熙老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') }
+          { type: '葡萄种植', school: '勤奋中学', teacher: '刘老师', pic: require('@/assets/images/task1.jpg'), status: 'toDo' },
+          { type: '鲜花种植', school: '获得转小学', teacher: '熙老师', pic: require('@/assets/images/task1.jpg'), status: 'Done' }
         ],
         [
-          { type: '西瓜种植', school: '重庆重点小学', teacher: '马老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') },
-          { type: '土豆种植', school: '新华中学', teacher: '钱老师', pic: require('@/assets/images/task1.jpg'), pic2: require('@/assets/images/task2.jpg') }
+          { type: '西瓜种植', school: '重庆重点小学', teacher: '马老师', pic: require('@/assets/images/task1.jpg'), status: 'toDo' },
+          { type: '土豆种植', school: '新华中学', teacher: '钱老师', pic: require('@/assets/images/task1.jpg'), status: 'doing' }
         ]
       ],
       videoS: {
@@ -128,8 +164,35 @@ export default {
       }
     }
   },
+  computed: {
+    taskStatusImg (status) {
+      return function (i) {
+        if (i === 'toDo') {
+          return require('@/assets/images/发起中.png')
+        } else if (i === 'doing') {
+          return require('@/assets/images/实验中.png')
+        } else {
+          return require('@/assets/images/已完成.png')
+        }
+      }
+    }
+  },
   created () {
     this.gardenid = this.$route.params.gardenid
+  },
+  methods: {
+    format1 (percentage) {
+      return `${percentage}℃` + '\n' + '温度'
+    },
+    format2 (percentage) {
+      return `${percentage}%` + '\n' + '湿度'
+    },
+    format3 (percentage) {
+      return `${percentage}%` + '\n' + '土壤水分'
+    },
+    format4 (percentage) {
+      return `${percentage}℃` + '\n' + '土壤温度'
+    }
   }
 
 }
@@ -177,6 +240,16 @@ h3 span{
   margin-top: 20px;
 
 }
+.task-type{
+  font-size: 30px;
+}
+.task-school{
+  padding-right: 12px;
+  font-size: 17px;
+}
+.task-teacher{
+  font-size: 17px;
+}
 .card-group{
   position: relative;
 }
@@ -184,8 +257,8 @@ h3 span{
   position: absolute;
   z-index: 10;
   opacity: 70%;
-  left: 80%;
-  top: -10%;
+  left: 78%;
+  top: -6%;
   height: 60%;
   text-align:center;
 }
@@ -194,6 +267,19 @@ h3 span{
   font-size: 80%;
   background: rgb(248, 246, 246);
   border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.card-link-data{
+  position: relative;
+}
+.card-link-detail{
+  position: absolute;
+  top: 9%;
+  left: 80%;
+  border: 1px solid darkblue;
+  color: darkblue;
+  border-radius: 10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 .video-container{
   width: 100%;
@@ -206,25 +292,23 @@ h3 span{
   margin: 1%;
   float:left;
 }
-.img3{
-  margin: 0 auto;
+.img2{
+  margin-top: 2%;
 }
 .ka{
   display: flex;
   justify-content:space-around;
 }
-  .gardenTask{
-    margin-left: 11%;
-    width:33%;
-  }
+.gardenTask{
+  margin-right: 9%;
+  width:37%;
+}
 
 .shu{
   border-left: 2px solid rgb(233, 18, 72);
   height: 25px;
 }
-.text span{
-  font-size: 25px;
-}
+
 .kong{
   height: 30%;
 }
@@ -244,15 +328,14 @@ h3 span{
   }
 }
 @media screen and (max-width:1300px){
-    .card-link p{
+  .card-link p{
   width: 100%;
 }
   .gardenTask{
-    margin-left: 11%;
     width:33%;
     height: auto;
   }
-    .address-img{
+  .address-img{
     margin-top: 1%;
     width: 4%;
     height: 4%;
@@ -263,12 +346,11 @@ h3 span{
   left: 76%;
   top: -10%;
 }
-    .address-p{
+  .address-p{
     margin-top: 1.2%;
   }
   .gardenTask{
-    margin-left: 11%;
-    width:65%;
+    width:50%;
     height: auto;
   }
     .address-img{
@@ -282,8 +364,7 @@ h3 span{
     margin-top: 2%;
   }
   .gardenTask{
-    margin-left: 11%;
-    width:70%;
+    width: 60%;
     height: auto;
   }
     .address-img{
@@ -307,19 +388,18 @@ h3 span{
   .card-link{
   left: 78%;
   top: 10%;
-}
+  }
   .card-link p{
     width: 60%;
     font-size: 2px;
   }
-    .gardenTask{
-      margin-left: 11%;
+  .gardenTask{
       width:80%;
       height: auto;
-    }
+  }
   .card-group{
     width: 48%;
     height: auto;
-}
+  }
 }
 </style>
