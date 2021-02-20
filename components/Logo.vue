@@ -16,7 +16,7 @@ h2{
   /* text-align: center; */
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 710px) {
   h2{
     margin:0 0 0 0;
     text-align: center;
