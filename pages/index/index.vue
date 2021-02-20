@@ -1,7 +1,7 @@
 <template>
   <div class="block">
     <el-carousel>
-      <el-carousel-item v-for="item in pictures" :key="item.id">
+      <el-carousel-item v-for="item in pictures" :key="item.id" style="height:600px;">
         <el-image
           style="width: 100%; height: 100%"
           :src="item.url"
@@ -10,9 +10,9 @@
       </el-carousel-item>
     </el-carousel>
     <el-card v-for="(item,index) in gardens" :key="index">
-      <p style="font-size: 40px;color: red;text-align: center">
+      <h3 style="text-align: center">
         {{ item.text }}
-      </p>
+      </h3>
       <el-image
         style="width: 100%; height: 100%"
         :src="item.url"
@@ -45,6 +45,7 @@ export default {
 </script>
 
 <style scoped>
+
 ::-webkit-scrollbar{
   width: 0 !important;
 }
@@ -52,16 +53,11 @@ export default {
   width: 0 !important;
   height: 0;
 }
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 300px;
-  margin: 0;
-}
 
 .el-carousel{
   width:100%;
+  height:600px;
+
 }
 .el-card{
   width: 98%;
@@ -69,35 +65,5 @@ export default {
   float:left;
 
 }
-.el-carousel__item:nth-child(2n) {
-  background-color: #99a9bf;
-};
-.el-carousel__item:nth-child(2n + 1) {
-  background-color: #d3dce6;
-}
-.carousel-warp {
-  margin: 0 auto;
-  /* clear: both; */
-  width: 80%;
-}
-.card-warp .el-card {
-  width: 30%;
-  float: left;
-  margin: 20px;
-}
-.el-carousel__item h3 {
-  color: #475669;
-  font-size: 14px;
-  opacity: 0.75;
-  line-height: 150px;
-  margin: 0;
-}
 
-.el-carousel__item:nth-child(2n) {
-    background-color: #99a9bf;
-}
-
-.el-carousel__item:nth-child(2n+1) {
-    background-color: #d3dce6;
-}
 </style>

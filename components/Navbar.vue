@@ -1,5 +1,6 @@
 <template>
   <div class="navbar">
+    <!-- <el-card> -->
     <el-row>
       <el-col :xs="8" :sm="8" :md="8" :lg="8" :xl="8">
         <div class="logo-warp">
@@ -10,34 +11,31 @@
         <div class="list-warp">
           <el-menu
             :default-active="activeIndex"
-            class="el-menu-demo"
             :mode="mode"
-            background-color="#545c64"
-            text-color="#fff"
-            active-text-color="#ffd04b"
+            active-text-color="#409EFF"
             @select="handleSelect"
           >
-            <el-menu-item index="Index">
+            <el-menu-item index="/">
               <nuxt-link to="/">
                 首 页
               </nuxt-link>
             </el-menu-item>
-            <el-menu-item index="Task">
+            <el-menu-item index="/task">
               <nuxt-link to="/task">
                 耕种实验
               </nuxt-link>
             </el-menu-item>
-            <el-menu-item index="Garden">
+            <el-menu-item index="/garden">
               <nuxt-link to="/garden">
                 菜 园
               </nuxt-link>
             </el-menu-item>
-            <el-menu-item index="Expert">
+            <el-menu-item index="/expert">
               <nuxt-link to="/expert">
                 专家介绍
               </nuxt-link>
             </el-menu-item>
-            <el-menu-item index="Personal">
+            <el-menu-item index="/personal">
               <nuxt-link to="/personal">
                 我 的
               </nuxt-link>
@@ -83,6 +81,7 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
+    <!-- </el-card> -->
   </div>
 </template>
 
@@ -90,9 +89,12 @@
 export default {
   data () {
     return {
-      activeIndex: 'Index',
+      activeIndex: '/',
       mode: 'horizontal'
     }
+  },
+  created () {
+    this.activeIndex = this.$route.path
   },
   methods: {
     handleSelect (key, keyPath) {

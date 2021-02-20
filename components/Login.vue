@@ -31,6 +31,7 @@ export default {
   name: 'Login',
   data () {
     return {
+      form: {},
       centerDialogVisible: false
     }
   }

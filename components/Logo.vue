@@ -6,9 +6,9 @@
 
 <style scope>
 .logo{
-  background-color:#545c64;
+  background-color:#fff;
   /* width:15%; */
-  color:white;
+  color:#409EFF;
   line-height:60px;
 }
 h2{

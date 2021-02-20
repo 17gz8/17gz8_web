@@ -11,3 +11,12 @@ a {
   margin: 1%;
   float: left;
 } */
+
+.el-menu.el-menu--horizontal {
+  border-bottom: none;
+}
+
+.el-menu--horizontal>.el-menu-item,
+.el-menu--horizontal>.el-menu-item.is-active{
+  
+}
