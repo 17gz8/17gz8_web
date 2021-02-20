@@ -1,7 +1,7 @@
 <template>
   <div class="block">
-    <el-carousel :interval="5000" arrow="never">
-      <el-carousel-item v-for="item in pictures" :key="item.id" style="height:600px;">
+    <el-carousel :interval="5000" height="600px">
+      <el-carousel-item v-for="item in pictures" :key="item.id">
         <el-image
           style="width: 100%; height: 100%"
           :src="item.url"
@@ -56,7 +56,7 @@ export default {
 
 .el-carousel{
   width:100%;
-  height:600px;
+  /* height:600px; */
 
 }
 .el-card{
