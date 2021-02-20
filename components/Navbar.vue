@@ -40,9 +40,6 @@
                 我 的
               </nuxt-link>
             </el-menu-item>
-            <el-menu-item index="Login">
-              <Login class="login" />
-            </el-menu-item>
           </el-menu>
         </div>
       </el-col>
@@ -83,6 +80,9 @@
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+    </div>
+    <div class="login-warp">
+      <Login class="login" />
     </div>
     <!-- </el-card> -->
   </div>
@@ -132,6 +132,12 @@ a {
 }
 .list-phone{
   display: none;
+}
+.login-warp{
+  position: absolute;
+  top:20px;
+  right:2%;
+
 }
 
 /* .login{

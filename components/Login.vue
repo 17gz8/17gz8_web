@@ -46,7 +46,7 @@ export default {
 
 <style scoped>
 .login-text{
-  font-size:18px;
+  font-size:14px;
 }
 
 </style>
