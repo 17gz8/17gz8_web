@@ -43,7 +43,7 @@
               </nuxt-link>
             </el-menu-item>
             <el-menu-item index="Login">
-              <Login />
+              <Login class="login" />
             </el-menu-item>
           </el-menu>
         </div>
@@ -79,6 +79,9 @@
             <nuxt-link to="/personal">
               我 的
             </nuxt-link>
+          </el-dropdown-item>
+          <el-dropdown-item>
+            <Login />
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
@@ -128,6 +131,10 @@ a {
 .list-phone{
   display: none;
 }
+
+/* .login{
+  float:left;
+} */
 /* 媒体查询 */
 /* @media screen and (max-width: 1400px) {
   .el-menu-item{
@@ -138,7 +145,8 @@ a {
     padding: 15px 10px;
   }
 } */
-@media screen and (max-width: 1200px) {
+
+@media screen and (max-width: 1270px) {
 
   .el-menu-item{
     padding: 0 5px;
@@ -146,6 +154,17 @@ a {
   a{
     /* background-color:lightskyblue; */
     padding: 15px 22px;
+  }
+}
+
+@media screen and (max-width: 887px) {
+
+  .el-menu-item{
+    padding: 0 5px;
+  }
+  a{
+    /* background-color:lightskyblue; */
+    padding: 15px 15px;
   }
 }
 @media screen and (max-width: 810px) {
@@ -157,7 +176,7 @@ a {
     padding: 15px 10px;
   }
 }
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 710px) {
   /* logo */
   .logo-warp{
     display: block;
@@ -193,5 +212,10 @@ a {
     font-size: 16px;
     color: black;
   }
+  .el-dropdown-menu .login-text{
+  padding: 15px 0px;
+  font-size: 16px !important;
+  color: black;
+}
 }
 </style>

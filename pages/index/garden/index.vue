@@ -34,24 +34,25 @@
         </div>
       </nuxt-link>
     </el-card>
+    {{ arr }}
   </div>
 </template>
 
 <script>
-// import axios from 'axios'
+import axios from 'axios'
 export default {
-  // asyncData({ res, error }) {
-  //   return axios
-  //     .get('http://localhost:3001/toplist/detail')
-  //     .then((res) => {
-  //       // console.log('res', res.data.list)
-  //       return { arr: res.data.list }
-  //     })
-  //     .catch((error) => {
-  //       // console.log('error', error)
-  //       return error
-  //     })
-  // },
+  asyncData ({ res, error }) {
+    return axios
+      .get('http://www.17gz8.com/allycs/server/device/v1/api/data')
+      .then((res) => {
+        // console.log('res', res.data.list)
+        return { arr: res.data }
+      })
+      .catch((error) => {
+        // console.log('error', error)
+        return error
+      })
+  },
   data () {
     return {
       gardens: [
