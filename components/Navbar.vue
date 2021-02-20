@@ -42,6 +42,9 @@
                 我 的
               </nuxt-link>
             </el-menu-item>
+            <el-menu-item index="Login">
+              <Login />
+            </el-menu-item>
           </el-menu>
         </div>
       </el-col>
