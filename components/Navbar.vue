@@ -221,9 +221,9 @@ a {
     color: black;
   }
   .el-dropdown-menu .login-text{
-  padding: 15px 0px;
-  font-size: 16px !important;
-  color: black;
-}
+    padding: 15px 0px;
+    font-size: 16px !important;
+    color: black !important;
+  }
 }
 </style>

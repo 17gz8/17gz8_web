@@ -46,7 +46,9 @@ export default {
 
 <style scoped>
 .login-text{
-  font-size:14px;
+  font-size:18px;
+  cursor: pointer;
+  color:#409EFF;
 }
 
 </style>

@@ -93,7 +93,7 @@
       <el-col :span="24">
         <div class="task-info">
           <div v-for="(card,index) in task.cards" :key="index" class="card-box">
-            <el-card body-style="overflow:visible; padding:0px;" class="card-box-el">
+            <el-card body-style="overflow:visible;padding:0px;" class="card-box-el">
               <div class="task-info-box">
                 <div class="card-img">
                   <el-image :src="card.taskImg" style="width: 100%; height: 100%;" fit="cover" />
