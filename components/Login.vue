@@ -439,7 +439,7 @@ export default {
   display: flex;
   justify-content: space-between;
 }
-.register .dialog-footer {
+.register .el-dialog__footer {
   text-align: center;
 }
 .register .dialog-footer .el-button {
