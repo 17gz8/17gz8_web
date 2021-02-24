@@ -21,6 +21,10 @@ h2{
     margin:0 0 0 0;
     text-align: center;
   }
+  .logo{
+    background-color:#545c64;
+    color:#fff;
+  }
 }
 
 </style>

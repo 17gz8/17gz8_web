@@ -75,9 +75,6 @@
               我 的
             </nuxt-link>
           </el-dropdown-item>
-          <el-dropdown-item>
-            <Login />
-          </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
@@ -137,7 +134,6 @@ a {
   position: absolute;
   top:20px;
   right:2%;
-
 }
 
 /* .login{
@@ -224,6 +220,13 @@ a {
     padding: 15px 0px;
     font-size: 16px !important;
     color: black !important;
+  }
+  /* login */
+  .login-warp{
+    position: absolute;
+    top:55px;
+    right:2%;
+    color:#fff;
   }
 }
 </style>

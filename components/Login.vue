@@ -449,4 +449,5 @@ export default {
 .activeType {
   font-size: 35px;
 }
+
 </style>
