@@ -108,6 +108,14 @@
           </el-card>
         </el-row>
       </div>
+      <div class="pa">
+        <el-pagination
+          :page-size="20"
+          :pager-count="6"
+          layout="prev, pager, next"
+          :total="1000"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -285,6 +293,8 @@ h3 span{
   width: 100%;
   /* margin-top:10px; */
   position: relative;
+  /* width: auto; */
+  height: auto;
   /* box-shadow: 0px 0px 3px 3px rgba(168, 168, 168, 0.5); */
 }
 .el-card{
@@ -315,6 +325,9 @@ h3 span{
 .kong2{
   height: 27%;
 }
+.pa{
+  margin-left: 36%;
+}
 @media screen and (max-width:1600px){
   .card-link p{
   width: 110%;
@@ -326,6 +339,9 @@ h3 span{
     width: 3%;
     height: 3%;
   }
+  .pa{
+  margin-left: 26%;
+}
 }
 @media screen and (max-width:1300px){
   .card-link p{
@@ -340,6 +356,9 @@ h3 span{
     width: 4%;
     height: 4%;
   }
+  .pa{
+  margin-left: 20%;
+}
 }
 @media screen and (max-width:1000px){
   .card-link{
@@ -358,6 +377,9 @@ h3 span{
     width: 5%;
     height: 5%;
   }
+  .pa{
+  margin-left: 0%;
+}
 }
 @media screen and (max-width:800px){
   .address-p{
